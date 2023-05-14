@@ -25,7 +25,7 @@ public class QuanLyTaiKhoan extends JPanel {
         lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
         JTabbedPane panel = new JTabbedPane();
-        panel.addTab("Nhân viên", Helper.resizeImg(new ImageIcon("img/search.png"), 40), new KhachHangGUI());
+        panel.addTab("Nhân viên", Helper.resizeImg(new ImageIcon("img/search.png"), 40), new NhanVienView());
         panel.addTab("Khách hàng", Helper.resizeImg(new ImageIcon("img/search.png"), 40), new KhachHangGUI());
 
         add(lbTitle, gbc);

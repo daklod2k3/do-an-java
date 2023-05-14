@@ -21,13 +21,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
-import javax.swing.DefaultRowSorter;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.RowFilter;
-import javax.swing.RowSorter;
+import javax.swing.*;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
@@ -43,7 +37,7 @@ import javax.swing.RowFilter;
  *
  * @author defaultuser0
  */
-public class NhanVienView extends javax.swing.JFrame {
+public class NhanVienView extends JPanel {
     NhanVienDAO dao = new NhanVienDAO();
     SimpleDateFormat date_format = new SimpleDateFormat("dd/MM/yyyy");
     
@@ -51,8 +45,7 @@ public class NhanVienView extends javax.swing.JFrame {
   
     public NhanVienView() {
         initComponents();
-        setLocationRelativeTo(this);
-       
+
         searchField.addCaretListener(new CaretListener() {
     @Override
     public void caretUpdate(CaretEvent e) {
@@ -247,13 +240,12 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon( ("img/search.png"))); // NOI18N
         jLabel1.setText("Tìm theo tên ");
 
         searchField.addCaretListener(new CaretListener() {
@@ -300,7 +292,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         jLabel11.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jLabel11.setText("Giới tính");
 
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Plus.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon( ("img/Plus.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -308,7 +300,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon( ("img/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -316,7 +308,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/tools.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon( ("img/tools.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -324,7 +316,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Refresh.png"))); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon( ("img/Refresh.png"))); // NOI18N
         btnLamMoi.setText("Làm mới");
         btnLamMoi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -332,7 +324,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnHienThi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/show.png"))); // NOI18N
+        btnHienThi.setIcon(new javax.swing.ImageIcon( ("img/show.png"))); // NOI18N
         btnHienThi.setText("Hiển thị");
         btnHienThi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -606,8 +598,8 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -617,7 +609,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+//        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLamMoiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
