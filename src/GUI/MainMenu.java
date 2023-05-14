@@ -1,5 +1,6 @@
 package GUI;
 
+import DTO.HoaDon;
 import DTO.TaiKhoanDTO;
 import GUI.Component.*;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -110,12 +111,13 @@ public class MainMenu extends JFrame{
 
         // label chức năng
         ArrayList<RightLabel> lbRightList = new ArrayList<>();
-        lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI()));
-        lbRightList.add(new RightLabel("store", "Kho hàng", new NhaCungCapGUI()));
-        lbRightList.add(new RightLabel("user", "Tài khoản", new JPanel() ));
+//        lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI()));
+        lbRightList.add(new RightLabel("store", "Kho hàng", new product_GUI()));
+        lbRightList.add(new RightLabel("supermaket", "Nhà cung cấp", new NhaCungCapGUI()));
+        lbRightList.add(new RightLabel("user", "Tài khoản", new QuanLyTaiKhoan()));
 
 
-        System.out.println(HoaDonGUI.getClassName());
+        System.out.println(HoaDonGUI_old.getClassName());
 
         for (RightLabel item : lbRightList){
             if (item == lbRightList.get(0)){
@@ -171,8 +173,7 @@ public class MainMenu extends JFrame{
             System.out.println(ex.getMessage());
         }
 //        new DangNhapGUI();
-//        new MainMenu(null);
-        new NhanVienView().setVisible(true);
+        new MainMenu(null);
     }
 
     public JLabel getlbRightPanel(String lbTxt, String imgLink){

@@ -72,7 +72,7 @@ public class MainScreen extends JFrame{
             panelRight.add(item);
         }
         //Frame view
-        panelCenter.add(new HoaDonGUI());
+        panelCenter.add(new HoaDonGUI_old());
 
         setVisible(true);
     }
