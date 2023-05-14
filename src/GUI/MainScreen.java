@@ -1,10 +1,9 @@
 package GUI;
 
-import com.sun.tools.javac.Main;
+import GUI.Component.HeaderBtn;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +14,6 @@ public class MainScreen extends JFrame{
     private JPanel panelTop;
     private JPanel panelRight;
     private JButton btnHoaDonViewToggle;
-    private JButton btnDanhSachHoaDonViewToggle;
     private JButton btnSanPhamViewToggle;
     private int DEFAULT_HEIGHT = 700,DEFALUT_WIDTH = 1400 ;
 
@@ -43,7 +41,7 @@ public class MainScreen extends JFrame{
         setSize(DEFALUT_WIDTH, DEFAULT_HEIGHT);
 //        setSize( 1800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(true);
+//        setUndecorated(true);
 
         setProbBtnHeader(new ArrayList<JButton>(Arrays.asList(btnSanPhamViewToggle, btnHoaDonViewToggle)));
 
@@ -58,12 +56,21 @@ public class MainScreen extends JFrame{
         panelTop.setBackground(new Color(255, 255, 255));
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.PAGE_END;
+
         panelTop.add(btnHoaDonViewToggle, c);
         panelTop.add(btnSanPhamViewToggle, c);
 
 
         //Header button
 
+
+        //Right panel
+        ArrayList<HeaderBtn> rightItem = new ArrayList<>();
+        rightItem.add(new HeaderBtn("shopping-cart", "Hoá đơn", 50, 50));
+
+        for (HeaderBtn item: rightItem){
+            panelRight.add(item);
+        }
         //Frame view
         panelCenter.add(new HoaDonGUI());
 

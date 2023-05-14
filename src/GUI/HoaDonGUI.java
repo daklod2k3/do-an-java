@@ -1,41 +1,50 @@
 package GUI;
 
+import GUI.Component.Variable;
+
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class HoaDonGUI extends JPanel {
-//    private JPanel panelMain;
-    private JTextArea txtTitle;
-    private JPanel panelFieldOption;
-    private JCheckBox cbAll;
-    private JCheckBox cbWaitForPay;
-    private JTable tblResult;
+
+
     public HoaDonGUI(){
-        componentInit();
         initGUI();
     }
-
-    void componentInit(){
-        txtTitle = new JTextArea();
-
-        panelFieldOption = new JPanel();
-
-        cbAll = new JCheckBox();
-
-        cbWaitForPay = new JCheckBox();
-
-        tblResult = new JTable();
-    }
     void initGUI(){
+        setLayout(new GridBagLayout());
 
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
 
-        add(txtTitle);
-        add(panelFieldOption);
-        panelFieldOption.add(cbAll);
-        panelFieldOption.add(cbWaitForPay);
-        add(tblResult);
+        JTabbedPane panel = new JTabbedPane();
+        JLabel lbTitle = new JLabel("QUẢN LÝ HOÁ ĐƠN");
+        lbTitle.setForeground(Color.WHITE);
+        lbTitle.setBackground(Variable.primaryColor);
+        lbTitle.setOpaque(true);
+//        lbTitle.setPreferredSize(new Dimension(getWidth(), 30));
+        lbTitle.setFont(new Font(Variable.primaryFont.getName(), Font.BOLD, 27));
+        lbTitle.setPreferredSize(new Dimension(getWidth(), 70));
+        lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
+        panel.addTab("Tạo hoá đơn", Helper.resizeImg(new ImageIcon("img/plus.png"), 40), new TaoHoaDonGUI());
+        panel.addTab("Danh sách hoá đơn", Helper.resizeImg(new ImageIcon("img/list.png"), 40), new TaoHoaDonGUI());
 
+        add(lbTitle, gbc);
+        gbc.insets = new Insets(10,10,0,10);
+        gbc.fill = GridBagConstraints.BOTH;
+    gbc.weighty = 1;
+        add(panel, gbc);
     }
+
+    static public String getClassName(){
+        HoaDonGUI tmp = new HoaDonGUI();
+        return tmp.getClass().getCanonicalName();
+    }
+
 }
