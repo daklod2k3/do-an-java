@@ -1,6 +1,5 @@
 package GUI;
 
-import DTO.HoaDon;
 import DTO.TaiKhoanDTO;
 import GUI.Component.*;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -17,9 +16,11 @@ public class MainMenu extends JFrame{
     private JPanel panelCenter;
     private JTabbedPane panelTapped;
     private JPanel panelRight;
+    private JPanel panelLeft;
     private ArrayList<JComponent> headerBtnList;
     private ArrayList<JComponent> leftBtnList;
-    private int DEFAULT_HEIGHT = 700,DEFALUT_WIDTH = 1400 ;
+    private int DEFAULT_HEIGHT = 900,DEFALUT_WIDTH = 1600 ;
+    private JLabel lbTitle;
     final Color primaryColor = new Color(27, 158, 252);
 
     private RightLabel activingLb;
@@ -55,15 +56,19 @@ public class MainMenu extends JFrame{
 //        setUndecorated(true);
 
 
-        //init panel
+        //init component
         panelTapped = new JTabbedPane();
 
         panelRight = new JPanel();
 
         panelCenter = new JPanel(new CardLayout());
 
+        panelLeft = new JPanel(new GridBagLayout());
+
+        lbTitle = new JLabel();
+
         add(panelRight, BorderLayout.WEST);
-        add(panelCenter, BorderLayout.CENTER);
+//        add(panelCenter, BorderLayout.CENTER);
 
 
         // Panel bên trái
@@ -111,7 +116,7 @@ public class MainMenu extends JFrame{
 
         // label chức năng
         ArrayList<RightLabel> lbRightList = new ArrayList<>();
-//        lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI()));
+//        lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI_old()));
         lbRightList.add(new RightLabel("store", "Kho hàng", new product_GUI()));
         lbRightList.add(new RightLabel("supermaket", "Nhà cung cấp", new NhaCungCapGUI()));
         lbRightList.add(new RightLabel("user", "Tài khoản", new QuanLyTaiKhoan()));
@@ -122,6 +127,7 @@ public class MainMenu extends JFrame{
         for (RightLabel item : lbRightList){
             if (item == lbRightList.get(0)){
                 activingLb = item.setActive();
+                lbTitle.setText("QUẢN LÝ ");
             }
             panelCenter.add(item.getActivePanel(), item.getLbTxt());
             item.addMouseListener(new MouseListener() {
@@ -132,6 +138,7 @@ public class MainMenu extends JFrame{
                         activingLb = item.setActive();
                         CardLayout cardLayout = (CardLayout) panelCenter.getLayout();
                         cardLayout.show(panelCenter, item.getLbTxt());
+                        lbTitle.setText("QUẢN LÝ " + item.getLbTxt().toUpperCase());
                     }
                 }
                 @Override
@@ -162,6 +169,40 @@ public class MainMenu extends JFrame{
 
         // Panel center
 
+        // panel left
+
+
+        lbTitle.setOpaque(true);
+        lbTitle.setBackground(Variable.primaryColor);
+        lbTitle.setForeground(Color.white);
+        lbTitle.setText("QUẢN LÝ " + lbRightList.get(0).getLbTxt().toUpperCase());
+        lbTitle.setFont(new Font(Variable.primaryFont.getName(), Font.BOLD, 30));
+        lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
+
+        gbc = new GridBagConstraints();
+        gbc.weightx = 1;
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipady = 50;
+        gbc.fill = GridBagConstraints.BOTH;
+        panelLeft.add(lbTitle, gbc);
+
+//        JLabel test = new JLabel("Test");
+//        test.setBackground(Color.BLUE);
+//        test.setOpaque(true);
+
+        gbc.gridy = 1;
+        gbc.ipady = 0;
+        gbc.weighty = 1;
+        panelLeft.add(panelCenter, gbc);
+
+//        panelLeft.add(panelCenter, gbc);
+
+        add(panelLeft, BorderLayout.CENTER);
+
+
+
         setVisible(true);
     }
 
@@ -174,6 +215,7 @@ public class MainMenu extends JFrame{
         }
 //        new DangNhapGUI();
         new MainMenu(null);
+
     }
 
     public JLabel getlbRightPanel(String lbTxt, String imgLink){

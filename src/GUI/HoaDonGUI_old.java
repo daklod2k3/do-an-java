@@ -20,20 +20,20 @@ public class HoaDonGUI_old extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
 
-        JLabel lbTitle = new JLabel("QUẢN LÝ HOÁ ĐƠN");
-        lbTitle.setForeground(Color.WHITE);
-        lbTitle.setBackground(Variable.primaryColor);
-        lbTitle.setOpaque(true);
-//        lbTitle.setPreferredSize(new Dimension(getWidth(), 30));
-        lbTitle.setFont(new Font(Variable.primaryFont.getName(), Font.BOLD, 27));
-        lbTitle.setPreferredSize(new Dimension(getWidth(), 70));
-        lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
+//        JLabel lbTitle = new JLabel("QUẢN LÝ HOÁ ĐƠN");
+//        lbTitle.setForeground(Color.WHITE);
+//        lbTitle.setBackground(Variable.primaryColor);
+//        lbTitle.setOpaque(true);
+////        lbTitle.setPreferredSize(new Dimension(getWidth(), 30));
+//        lbTitle.setFont(new Font(Variable.primaryFont.getName(), Font.BOLD, 27));
+//        lbTitle.setPreferredSize(new Dimension(getWidth(), 70));
+//        lbTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
         JTabbedPane panel = new JTabbedPane();
         panel.addTab("Tạo hoá đơn", Helper.resizeImg(new ImageIcon("img/plus.png"), 40), new TaoHoaDonGUI());
         panel.addTab("Danh sách hoá đơn", Helper.resizeImg(new ImageIcon("img/list.png"), 40), new TaoHoaDonGUI());
 
-        add(lbTitle, gbc);
+//        add(lbTitle, gbc);
         gbc.insets = new Insets(10,10,0,10);
         gbc.fill = GridBagConstraints.BOTH;
     gbc.weighty = 1;

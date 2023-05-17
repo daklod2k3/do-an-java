@@ -5,7 +5,6 @@
 package DAO;
 
 import DTO.KhachHangDTO;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,161 +13,152 @@ import java.util.List;
 
 /**
  *
- * @author defaultuser0
+ * @author Anh Huy
  */
-public class KhachHangDAO {
-    Connection conn = null;
-    PreparedStatement sttm = null;
-  //  ArrayList<KhachHang> ls = new ArrayList<>();
+public class KhachHangDAO extends conndb{
     
-    public int add(KhachHangDTO kh ){
+    public ArrayList<KhachHangDTO> getALL() {
+       ArrayList<KhachHangDTO> ls = new ArrayList<>();
+       if(openConnection()) {
+           try {
+               String sql = "SELECT * FROM khachhang";
+               Statement s = con.createStatement();
+               ResultSet rs = s.executeQuery(sql);
+               while(rs.next()) {
+                   KhachHangDTO kh = new KhachHangDTO();
+                kh.setMaKH(rs.getString(1));
+                kh.setTenKH(rs.getString(2));
+                kh.setGioiTinh(rs.getBoolean(5));
+                kh.setDiaChi(rs.getString(3));
+                kh.setSoDienThoai(rs.getString(4));
+                kh.setKhachHangTT(rs.getBoolean(7));
+                kh.setTrangThai(rs.getBoolean(6));
+                ls.add(kh);
+               }
+           } catch (Exception e) {
+               System.out.println(e);
+           } finally {
+               closeConnection();
+           }
+       }
+       return ls;
+   }
+    public boolean add(KhachHangDTO kh ){
+        if(openConnection()) {
         try {
-            String sSQL = "insert KhachHang(MaKH,TenKH,GioiTinh,DiaChi,SoDienThoai,KhachHangTT,TrangThai) "
-            + "values(?,?,?,?,?,?,?)";
-            conn = DatabaseHelper.getDBConnect();
-            sttm = conn.prepareStatement(sSQL);
-            sttm.setString(1,kh.getMaKH());
-            sttm.setString(2,kh.getTenKH());
-            sttm.setBoolean(3,kh.isGioiTinh());
-            sttm.setString(4,kh.getDiaChi());
-            sttm.setString(5,kh.getSoDienThoai());
-            sttm.setBoolean(6,kh.isKhachHangTT());
-            sttm.setBoolean(7,true);
+            String sql = "INSERT into khachhang values(?,?,?,?,?,?,?)";
+            PreparedStatement sttm = con.prepareStatement(sql);
+                sttm.setString(1, kh.getMaKH());
+                sttm.setString(2, kh.getTenKH());
+                sttm.setString(3, kh.getDiaChi());
+                sttm.setString(4, kh.getSoDienThoai());
+                sttm.setBoolean(5,kh.isGioiTinh());
+                sttm.setBoolean(6,true); 
+                sttm.setBoolean(7,kh.isKhachHangTT());
             if (sttm.executeUpdate()>0){
                 System.out.println("Insert thanh cong");
-                return 1;
+                return true;
             }
         } catch (Exception e){
-            System.out.println("Error: "+ e.toString());
+            System.out.println("Error: "+ e.toString());  }
+        finally{
+               closeConnection();
+           }
         }
-        return -1;
+        return false;
     }
-    public int update(KhachHangDTO kh ){
+    public boolean update(KhachHangDTO kh ){
+        if(openConnection()) {
         try {
-            String sSQL = "update KhachHang set TenKH = ?, SoDienThoai=?, DiaChi=?,GioiTinh=?,KhachHangTT=?, TrangThai=? where MaKH =?";
-            conn = DatabaseHelper.getDBConnect();
-            sttm = conn.prepareStatement(sSQL);
-            sttm.setString(7,kh.getMaKH());
-            sttm.setString(1,kh.getTenKH());
-            sttm.setBoolean(4,kh.isGioiTinh());
-            sttm.setString(3,kh.getDiaChi());
-            sttm.setString(2,kh.getSoDienThoai());
-            sttm.setBoolean(5,kh.isKhachHangTT());
-            sttm.setBoolean(6,kh.isTrangThai());
+            String sql = "UPDATE khachhang SET TenKhachHang = ?, DiaChi=? ,SoDienThoai=?, GioiTinh=?,TrangThai=? ,KHThanThiet=?  WHERE MaKhachHang =?";
+            PreparedStatement sttm = con.prepareStatement(sql);
+                sttm.setString(7, kh.getMaKH());
+                sttm.setString(1, kh.getTenKH());
+                sttm.setString(2, kh.getDiaChi());
+                sttm.setString(3, kh.getSoDienThoai());
+                sttm.setBoolean(4,kh.isGioiTinh());
+                sttm.setBoolean(5,kh.isTrangThai()); 
+                sttm.setBoolean(6,kh.isKhachHangTT());
             if (sttm.executeUpdate()>0){
                 System.out.println("Update thanh cong");
-                return 1;
+                return true;
             }
         } catch (Exception e){
-            System.out.println("Error: "+ e.toString());
+            System.out.println("Error: "+ e.toString()); }
+        finally{
+               closeConnection();
+           }
         }
-        return -1;
+        return false;
     }
-    public int delete(String  MaKH){
+    public boolean delete(String  MaKH){
+        if(openConnection()) {
         try {
-            String sSQL = "update KhachHang set TrangThai = 0 where MaKH = ?";
-            conn = DatabaseHelper.getDBConnect();
-            sttm = conn.prepareStatement(sSQL);
+            String sql = "UPDATE khachhang set TrangThai = 0 WHERE MaKhachHang = ?";
+            PreparedStatement sttm = con.prepareStatement(sql);
             sttm.setString(1,MaKH);
             if (sttm.executeUpdate()>0){
                 System.out.println("Delete thanh cong");
-                return 1;
+                return true;
             }
         } catch (Exception e){
-            System.out.println("Error: "+ e.toString());
-        }
-        return -1;
-    }
-    public  List<KhachHangDTO> getALL(){
-        List<KhachHangDTO> ls = new ArrayList<>();
-        ResultSet rs = null;
-        Statement sttm = null;
-        try{
-            String sSQL ="select * from KhachHang ";
-            conn = DatabaseHelper.getDBConnect();
-            sttm = conn.createStatement();
-            rs = sttm.executeQuery(sSQL);
-            while (rs.next()){
-                KhachHangDTO kh = new KhachHangDTO();
-                kh.setMaKH(rs.getString(1));
-                kh.setTenKH(rs.getString(2));
-                kh.setGioiTinh(rs.getBoolean(3));
-                kh.setDiaChi(rs.getString(4));
-                kh.setSoDienThoai(rs.getString(5));
-                kh.setKhachHangTT(rs.getBoolean(6));
-                kh.setTrangThai(rs.getBoolean(7));
-                ls.add(kh);
-            }
-        } catch (Exception e) {
-            System.out.println("Error:"+e.toString());
-        }
+            System.out.println("Error: "+ e.toString()); }
         finally{
-            try{
-                rs.close(); sttm.close();conn.close();
-            } catch (Exception e){
-            }
+               closeConnection();
+           }
         }
-        return ls;
+        return false;
     }
-    public KhachHangDTO findByID(String MaKH){
-        ResultSet rs = null;
-        Statement sttm = null;
-        try{
-            String sSQL = "select * from KhachHang where MaKH='"+MaKH+"'";
-            conn = DatabaseHelper.getDBConnect();
-            sttm = conn.createStatement();
-            rs = sttm.executeQuery(sSQL);
-            while (rs.next()){
-                KhachHangDTO kh = new KhachHangDTO();
-                kh.setMaKH(rs.getString(1));
-                kh.setTenKH(rs.getString(2));
-                kh.setGioiTinh(rs.getBoolean(3));
-                kh.setDiaChi(rs.getString(4));
-                kh.setSoDienThoai(rs.getString(5));
-                kh.setKhachHangTT(rs.getBoolean(6));
-                kh.setTrangThai(rs.getBoolean(7));
-                return kh;
-            }
-            } catch (Exception e) {
-            System.out.println("Error:"+e.toString());
-        }
-        finally{
-            try{
-                rs.close(); sttm.close();conn.close();
-            } catch (Exception e){
-            }
-        }
-        return null;
-        }
     public List<KhachHangDTO> findByName(String name){
-        ResultSet rs = null;
-        Statement sttm = null;
-        List<KhachHangDTO> ls = new ArrayList<>();
-        try{
-            String sSQL = "select * from KhachHang where TenKH like '%"+name+"%'";
-            conn = DatabaseHelper.getDBConnect();
-            sttm = conn.createStatement();
-            rs = sttm.executeQuery(sSQL);
-            while (rs.next()){
-                KhachHangDTO kh = new KhachHangDTO();
+       ArrayList<KhachHangDTO> ls = new ArrayList<>();
+       if(openConnection()) {
+           try {
+               String sql = "SELECT * FROM khachhang WHERE TenKhachHang like '%"+name+"%'";
+               Statement s = con.createStatement();
+               ResultSet rs = s.executeQuery(sql);
+               while(rs.next()) {
+                   KhachHangDTO kh = new KhachHangDTO();
                 kh.setMaKH(rs.getString(1));
                 kh.setTenKH(rs.getString(2));
-                kh.setGioiTinh(rs.getBoolean(3));
-                kh.setDiaChi(rs.getString(4));
-                kh.setSoDienThoai(rs.getString(5));
-                kh.setKhachHangTT(rs.getBoolean(6));
-                kh.setTrangThai(rs.getBoolean(7));
+                kh.setGioiTinh(rs.getBoolean(5));
+                kh.setDiaChi(rs.getString(3));
+                kh.setSoDienThoai(rs.getString(4));
+                kh.setKhachHangTT(rs.getBoolean(7));
+                kh.setTrangThai(rs.getBoolean(6));
                 ls.add(kh);
-            }
-            } catch (Exception e) {
-            System.out.println("Error:"+e.toString());
-        }
-        finally{
-            try{
-                rs.close(); sttm.close();conn.close();
-            } catch (Exception e){
-            }
-        }
-        return ls;
-        }
+               }
+           } catch (Exception e) {
+               System.out.println(e);
+           } finally {
+               closeConnection();
+           }
+       }
+       return ls;
+   }
+    public ArrayList<KhachHangDTO> getAll() {
+       ArrayList<KhachHangDTO> ls = new ArrayList<>();
+       if(openConnection()) {
+           try {
+               String sql = "SELECT * FROM khachhang WHERE TrangThai = 1";
+               Statement s = con.createStatement();
+               ResultSet rs = s.executeQuery(sql);
+               while(rs.next()) {
+                   KhachHangDTO kh = new KhachHangDTO();
+                kh.setMaKH(rs.getString(1));
+                kh.setTenKH(rs.getString(2));
+                kh.setGioiTinh(rs.getBoolean(5));
+                kh.setDiaChi(rs.getString(3));
+                kh.setSoDienThoai(rs.getString(4));
+                kh.setKhachHangTT(rs.getBoolean(7));
+                kh.setTrangThai(rs.getBoolean(6));
+                ls.add(kh);
+               }
+           } catch (Exception e) {
+               System.out.println(e);
+           } finally {
+               closeConnection();
+           }
+       }
+       return ls;
+   }
 }

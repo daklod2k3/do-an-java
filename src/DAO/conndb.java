@@ -8,8 +8,8 @@ public class conndb {
     protected Connection con = null;
     public boolean openConnection() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String dbUrl = "jdbc:mysql://localhost:3306/project_sieuthi";
+            Class.forName("com.mysql.jdbc.Driver");
+            String dbUrl = "jdbc:mysql://localhost:3306/sieuthimini";
             String username = "root";
             String password = "";
             con = DriverManager.getConnection(dbUrl,username,password);
