@@ -10,6 +10,7 @@ import java.util.List;
 
 public class MainScreen extends JFrame{
     private JPanel panelMain;
+    private JPasswordField passwordField1;
     private JPanel panelCenter;
     private JPanel panelTop;
     private JPanel panelRight;

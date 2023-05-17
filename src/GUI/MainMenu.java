@@ -116,7 +116,7 @@ public class MainMenu extends JFrame{
 
         // label chức năng
         ArrayList<RightLabel> lbRightList = new ArrayList<>();
-//        lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI_old()));
+        lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI()));
         lbRightList.add(new RightLabel("store", "Kho hàng", new product_GUI()));
         lbRightList.add(new RightLabel("store", "Nhập hàng", new phieuNhap_GUI()));
         lbRightList.add(new RightLabel("supermaket", "Nhà cung cấp", new NhaCungCapGUI()));
