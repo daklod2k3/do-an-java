@@ -118,11 +118,9 @@ public class MainMenu extends JFrame{
         ArrayList<RightLabel> lbRightList = new ArrayList<>();
 //        lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI_old()));
         lbRightList.add(new RightLabel("store", "Kho hàng", new product_GUI()));
+        lbRightList.add(new RightLabel("store", "Nhập hàng", new phieuNhap_GUI()));
         lbRightList.add(new RightLabel("supermaket", "Nhà cung cấp", new NhaCungCapGUI()));
         lbRightList.add(new RightLabel("user", "Tài khoản", new QuanLyTaiKhoan()));
-
-
-        System.out.println(HoaDonGUI_old.getClassName());
 
         for (RightLabel item : lbRightList){
             if (item == lbRightList.get(0)){
@@ -202,7 +200,6 @@ public class MainMenu extends JFrame{
         add(panelLeft, BorderLayout.CENTER);
 
 
-
         setVisible(true);
     }
 
@@ -234,7 +231,7 @@ public class MainMenu extends JFrame{
         lb.setOpaque(true);
         lb.setBackground(Color.white);
         String imgLink = lb.getIcon().toString();
-        imgLink = imgLink.replace(".png", "-selected.png");
+        imgLink = imgLink.replace(".png", "-selected.png`");
         System.out.println(imgLink);
         lb.setIcon(new ImageIcon(imgLink));
     }

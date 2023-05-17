@@ -7,9 +7,9 @@ package GUI;
 
 import java.awt.Color;
 import java.util.Arrays;
-import javax.swing.*;
 import javax.swing.border.Border;
-
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
 import DAO.TaiKhoanDAO;
@@ -18,7 +18,7 @@ import DAO.TaiKhoanDAO;
  *
  * @author defaultuser0
  */
-public class TaiKhoanView extends JPanel {
+public class TaiKhoanView extends javax.swing.JFrame {
     
     TaiKhoanDAO dao = new TaiKhoanDAO();
     /**
@@ -32,6 +32,7 @@ public class TaiKhoanView extends JPanel {
         jPanel_main.setBorder(panel_border);
         txt_matKhau.setBorder(textfield_border);
         txt_taiKhoan.setBorder(textfield_border);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -56,7 +57,9 @@ public class TaiKhoanView extends JPanel {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        add(jPanel_main);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
         jPanel_main.setBackground(new Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Viner Hand ITC", 1, 48)); // NOI18N
@@ -205,8 +208,8 @@ public class TaiKhoanView extends JPanel {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -216,6 +219,7 @@ public class TaiKhoanView extends JPanel {
             .addComponent(jPanel_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangNhapActionPerformed
@@ -225,10 +229,10 @@ public class TaiKhoanView extends JPanel {
             String mk = new String(password);
             System.out.println(tk);
             System.out.println(mk);
-
+          
             if (dao.checkLogin(tk, mk)==1) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-//                this.dispose();
+                this.dispose();
                 NhanVienView x = new NhanVienView();
                 x.setVisible(true);
             } else if(dao.checkLogin(tk, mk)==0){
@@ -242,17 +246,17 @@ public class TaiKhoanView extends JPanel {
     }//GEN-LAST:event_btn_dangNhapActionPerformed
 
     private void jLabel_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_closeMouseClicked
-//        this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jLabel_closeMouseClicked
 
     private void btn_dangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangKyActionPerformed
         DangKyView view = new DangKyView();
         view.setVisible(true);
-//        this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btn_dangKyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        this.dispose();
+        this.dispose();
         QuenMatKhauGUI x = new QuenMatKhauGUI();
         x.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

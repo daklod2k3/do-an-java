@@ -10,8 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import GUI.Component.Variable;
 import GUI.phieuNhap_GUI;
 import assets.Classes.ProductImportStorage;
 import assets.Classes.Validate;
@@ -326,15 +324,12 @@ public class product_GUI extends JPanel {
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
 
-//        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
 
-//        setBackground(new java.awt.Color(0, 153, 204));
-        setBackground(Variable.primaryColor);
-        setForeground(new java.awt.Color(0, 0, 0));
-        add(jLabel1);
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setBackground(Variable.primaryColor);
-//        jLabel1.setOpaque(true);
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -342,7 +337,7 @@ public class product_GUI extends JPanel {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        setLayout(jPanel1Layout);
+        jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -835,7 +830,7 @@ public class product_GUI extends JPanel {
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        setLayout(layout);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -964,10 +959,10 @@ public class product_GUI extends JPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        phieuNhap_GUI a = new phieuNhap_GUI();
-        a.setVisible(true);
-        a.setLocationRelativeTo(null);
+//        // TODO add your handling code here:
+//        phieuNhap_GUI a = new phieuNhap_GUI();
+//        a.setVisible(true);
+//        a.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

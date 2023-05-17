@@ -36,7 +36,7 @@ public class HoaDonGUI_old extends JPanel {
 //        add(lbTitle, gbc);
         gbc.insets = new Insets(10,10,0,10);
         gbc.fill = GridBagConstraints.BOTH;
-    gbc.weighty = 1;
+        gbc.weighty = 1;
         add(panel, gbc);
     }
 

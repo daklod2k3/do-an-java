@@ -21,17 +21,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import com.formdev.flatlaf.FlatLightLaf;
-import javax.swing.UIManager;
+
 /**
  *
  * @author Admin
  */
-public class phieuNhap_GUI extends javax.swing.JFrame {
+public class phieuNhap_GUI extends JPanel {
     ArrayList<NhaCungCap> arrNCC;
     ArrayList<chitietPN_DTO> chiTietList;
     DefaultTableModel modelTable;
@@ -70,21 +68,21 @@ public class phieuNhap_GUI extends javax.swing.JFrame {
         jTextField4.setText(dateTimeString);
     }
     public void loadNCC() {
-        NhaCungCap ncc = new NhaCungCap();
-        arrNCC = new ArrayList<>();
-        arrNCC = ncc.getAllNCC();
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        for(int i=0;i<arrNCC.size();i++) {
-            // lọc các NCC còn hoạt động
-            if(arrNCC.get(i).isTrangThai()) {
-                model.addElement(arrNCC.get(i).getMaNCC());
-            }
-        }
-        jTextField12.setText(arrNCC.get(0).getMaNCC());
-        jTextField13.setText(arrNCC.get(0).getTenNCC());
-        jTextField14.setText(arrNCC.get(0).getDiaChi());
-        jTextField15.setText(arrNCC.get(0).getSdt());
-        jComboBox2.setModel(model);
+//        NhaCungCap ncc = new NhaCungCap();
+//        arrNCC = new ArrayList<>();
+//        arrNCC = ncc.getAllNCC();
+//        DefaultComboBoxModel model = new DefaultComboBoxModel();
+//        for(int i=0;i<arrNCC.size();i++) {
+//            // lọc các NCC còn hoạt động
+//            if(arrNCC.get(i).isTrangThai()) {
+//                model.addElement(arrNCC.get(i).getMaNCC());
+//            }
+//        }
+//        jTextField12.setText(arrNCC.get(0).getMaNCC());
+//        jTextField13.setText(arrNCC.get(0).getTenNCC());
+//        jTextField14.setText(arrNCC.get(0).getDiaChi());
+//        jTextField15.setText(arrNCC.get(0).getSdt());
+//        jComboBox2.setModel(model);
     }
     public void loadNV() {
         NhanVien nv = new NhanVien();
@@ -206,7 +204,7 @@ public class phieuNhap_GUI extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+//        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1150, 700));
 
         jLabel19.setFont(new java.awt.Font("Sitka Text", 1, 24)); // NOI18N
@@ -807,8 +805,8 @@ public class phieuNhap_GUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Quản Lý Nhập Hàng", jPanel6);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
@@ -818,7 +816,7 @@ public class phieuNhap_GUI extends javax.swing.JFrame {
             .addComponent(jTabbedPane1)
         );
 
-        pack();
+//        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

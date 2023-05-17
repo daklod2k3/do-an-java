@@ -6,6 +6,7 @@ package BUS;
 
 import DAO.NhanVienDAO;
 import DTO.NhanVienDTO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +31,7 @@ public class NhanVienBUS {
         }
         return false;
     }
-    public String addNV(NhanVienDTO nv){
+    public String addNV(NhanVienDTO nv) throws SQLException{
         if(hasNV(nv.getMaNV()))
             return "Mã nhân viên đã tồn tại";
         if(nvDAO.add(nv)==1)

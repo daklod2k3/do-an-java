@@ -20,11 +20,11 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-//import org.apache.poi.ss.usermodel.CellType;
-//import org.apache.poi.xssf.usermodel.XSSFCell;
-//import org.apache.poi.xssf.usermodel.XSSFRow;
-//import org.apache.poi.xssf.usermodel.XSSFSheet;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -38,6 +38,7 @@ public class KhachHangGUI extends JPanel {
      */
     public KhachHangGUI() {
         initComponents();
+//        setLocationRelativeTo(this);
         tbl_KhachHang.getColumn("Xoá").setCellRenderer(new ButtonRenderer());
         MouseClickBtn();
             
@@ -84,6 +85,7 @@ public class KhachHangGUI extends JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_KhachHang = new javax.swing.JTable();
 
+//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -116,7 +118,7 @@ public class KhachHangGUI extends JPanel {
         refBtn.setBackground(new java.awt.Color(0, 204, 255));
         refBtn.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         refBtn.setForeground(new java.awt.Color(255, 255, 255));
-        refBtn.setIcon(new javax.swing.ImageIcon(("/img/Refresh.png"))); // NOI18N
+        refBtn.setIcon(new javax.swing.ImageIcon(("img/Refresh.png"))); // NOI18N
         refBtn.setText("Làm mới");
         refBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,11 +212,11 @@ public class KhachHangGUI extends JPanel {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(("img/excel.png"))); // NOI18N
         jButton2.setText("Xuất excel");
-//        jButton2.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                jButton2ActionPerformed(evt);
-//            }
-//        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -319,7 +321,7 @@ public class KhachHangGUI extends JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh sách khách hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        tbl_KhachHang.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_KhachHang.setModel(new DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -330,7 +332,7 @@ public class KhachHangGUI extends JPanel {
                 "Mã Khách Hàng", "Tên Khách Hàng", "Giới Tính", "Địa Chỉ", "SĐT", "Khách Hàng Thân Thiết", "Trạng thái", "Xoá"
             }
         ));
-        tbl_KhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_KhachHang.addMouseListener(new MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_KhachHangMouseClicked(evt);
             }
@@ -387,6 +389,7 @@ public class KhachHangGUI extends JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+//        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbl_KhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_KhachHangMouseClicked
@@ -440,75 +443,75 @@ public class KhachHangGUI extends JPanel {
     fillTable1();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-//    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        KhachHangDAO bus = new KhachHangDAO();
-//        ArrayList<KhachHangDTO> list = bus.getAll();
-//        try {
-//            XSSFWorkbook workbook = new XSSFWorkbook();
-//            XSSFSheet sheet = workbook.createSheet("khachhang");
-//
-//            XSSFRow row = null;
-//            XSSFCell cell = null;
-//
-//            row = sheet.createRow(0);
-//
-//            cell = row.createCell(0, CellType.STRING);
-//            cell.setCellValue("STT");
-//
-//            cell = row.createCell(1, CellType.STRING);
-//            cell.setCellValue("Mã khách hàng");
-//
-//            cell = row.createCell(2, CellType.STRING);
-//            cell.setCellValue("Tên khách hàng");
-//
-//            cell = row.createCell(3, CellType.STRING);
-//            cell.setCellValue("Giới tính");
-//
-//            cell = row.createCell(4, CellType.STRING);
-//            cell.setCellValue("Số điện thoại");
-//
-//            cell = row.createCell(5, CellType.STRING);
-//            cell.setCellValue("Địa chỉ");
-//
-//            int i = 1;
-//            for (KhachHangDTO kh : list) {
-//                row = sheet.createRow(0 + i);
-//
-//                cell = row.createCell(0, CellType.NUMERIC);
-//                cell.setCellValue(i);
-//
-//                cell = row.createCell(1, CellType.NUMERIC);
-//                cell.setCellValue(kh.getMaKH());
-//
-//                cell = row.createCell(2, CellType.STRING);
-//                cell.setCellValue(kh.getTenKH());
-//
-//                cell = row.createCell(3, CellType.STRING);
-//                cell.setCellValue(kh.isGioiTinh());
-//
-//                cell = row.createCell(4, CellType.STRING);
-//                cell.setCellValue(kh.getSoDienThoai());
-//
-//                cell = row.createCell(5, CellType.NUMERIC);
-//                cell.setCellValue(kh.getDiaChi());
-//
-//                i++;
-//            }
-//
-//            File f = new File("D://khachhang.xlsx");
-//            try {
-//                FileOutputStream fis = new FileOutputStream(f);
-//
-//                workbook.write(fis);
-//                fis.close();
-//                JOptionPane.showMessageDialog(rootPane, "Xuất file thành công: D:/khachhang.xlsx","Thông báo", JOptionPane.INFORMATION_MESSAGE);
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        KhachHangDAO bus = new KhachHangDAO();
+        ArrayList<KhachHangDTO> list = bus.getAll();
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("khachhang");
+
+            XSSFRow row = null;
+            XSSFCell cell = null;
+
+            row = sheet.createRow(0);
+
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("STT");
+
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("Mã khách hàng");
+
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("Tên khách hàng");
+
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue("Giới tính");
+
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue("Số điện thoại");
+            
+            cell = row.createCell(5, CellType.STRING);
+            cell.setCellValue("Địa chỉ");
+
+            int i = 1;
+            for (KhachHangDTO kh : list) {
+                row = sheet.createRow(0 + i);
+
+                cell = row.createCell(0, CellType.NUMERIC);
+                cell.setCellValue(i);
+
+                cell = row.createCell(1, CellType.NUMERIC);
+                cell.setCellValue(kh.getMaKH());
+
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue(kh.getTenKH());
+
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue(kh.isGioiTinh());
+
+                cell = row.createCell(4, CellType.STRING);
+                cell.setCellValue(kh.getSoDienThoai());
+                
+                cell = row.createCell(5, CellType.NUMERIC);
+                cell.setCellValue(kh.getDiaChi());
+
+                i++;
+            }
+
+            File f = new File("D://khachhang.xlsx");
+            try {
+                FileOutputStream fis = new FileOutputStream(f);
+
+                workbook.write(fis);
+                fis.close();
+                JOptionPane.showMessageDialog(this, "Xuất file thành công: D:/khachhang.xlsx","Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }catch (Exception e){
+                e.printStackTrace();                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 public void fillTable1(){
     DefaultTableModel tblmodel = (DefaultTableModel)tbl_KhachHang.getModel(); // Sử dụng tbl_danhsach thay vì tbl_KhachHang
     tblmodel.setRowCount(0);

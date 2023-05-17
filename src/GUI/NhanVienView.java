@@ -31,7 +31,16 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import DTO.NhanVienDTO;
 import DAO.NhanVienDAO;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.SQLException;
 import javax.swing.RowFilter;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -239,13 +248,14 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         tbl_danglamviec = new JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setFocusable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon( ("img/search.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(("img/search.png"))); // NOI18N
         jLabel1.setText("Tìm theo tên ");
 
         searchField.addCaretListener(new CaretListener() {
@@ -292,7 +302,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         jLabel11.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jLabel11.setText("Giới tính");
 
-        btnThem.setIcon(new javax.swing.ImageIcon( ("img/Plus.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(("img/Plus.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -300,7 +310,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnXoa.setIcon(new javax.swing.ImageIcon( ("img/delete.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(("img/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -308,7 +318,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnSua.setIcon(new javax.swing.ImageIcon( ("img/tools.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(("img/tools.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -316,7 +326,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnLamMoi.setIcon(new javax.swing.ImageIcon( ("img/Refresh.png"))); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(("img/Refresh.png"))); // NOI18N
         btnLamMoi.setText("Làm mới");
         btnLamMoi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -324,7 +334,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnHienThi.setIcon(new javax.swing.ImageIcon( ("img/show.png"))); // NOI18N
+        btnHienThi.setIcon(new javax.swing.ImageIcon(("img/show.png"))); // NOI18N
         btnHienThi.setText("Hiển thị");
         btnHienThi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -448,6 +458,14 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon(("img/excel.png"))); // NOI18N
+        jButton1.setText("Xuất excel");
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -513,13 +531,14 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLamMoi))
+                    .addComponent(btnLamMoi)
+                    .addComponent(jButton1))
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cb_chucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -562,7 +581,9 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
                                     .addComponent(cb_gioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addComponent(btnXoa))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnXoa)
+                                    .addComponent(jButton1)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -599,7 +620,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        setLayout(layout);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -624,11 +645,14 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
            NhanVienDTO nv;
            try {
                nv = getModel();
-               if(dao.add(nv)>0)
-           {
-               JOptionPane.showMessageDialog(this, "Add thanh cong");
-               fillTable();
-           }
+               try {
+                   if(dao.add(nv)>0)
+                   {
+                       JOptionPane.showMessageDialog(this, "Add thanh cong");
+                       fillTable();
+                   }   } catch (SQLException ex) {
+                   Logger.getLogger(NhanVienView.class.getName()).log(Level.SEVERE, null, ex);
+               }
            } catch (ParseException ex) {
                Logger.getLogger(NhanVienView.class.getName()).log(Level.SEVERE, null, ex);
            }
@@ -666,6 +690,8 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
        if(dao.update(nv)>0){
            JOptionPane.showMessageDialog(this, "Sửa thành công");
            fillTable();
+           fillTableDangLamViec();
+           fillTableNghiViec();
        }else{
             JOptionPane.showMessageDialog(this, "Sửa thất bại ");
         }
@@ -718,6 +744,101 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_diaChiActionPerformed
 
+    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Component com = jTabbedPane2.getSelectedComponent();
+       JScrollPane scrollpane = (JScrollPane) com;
+       JTable table = (JTable) scrollpane.getViewport().getView();
+       ArrayList<NhanVienDTO> list = new ArrayList<>();
+       int rowCount = table.getRowCount();
+       int colCount = table.getColumnCount();
+      for (int i = 0; i < rowCount; i++) {
+    NhanVienDTO nv = new NhanVienDTO();
+    nv.setMaNV(table.getValueAt(i, 0).toString());
+    nv.setTenNV(table.getValueAt(i, 1).toString());
+    nv.setPhone(table.getValueAt(i, 2).toString());
+    nv.setDiaChi(table.getValueAt(i, 3).toString());
+    nv.setGioiTinh(Boolean.parseBoolean(table.getValueAt(i, 4).toString()));
+  String ngaySinhStr = (String) table.getValueAt(i, 5);
+Date ngaySinh = null;
+try {
+    ngaySinh = date_format.parse(ngaySinhStr);
+} catch (ParseException e) {
+    e.printStackTrace();
+}
+nv.setNgaySinh(ngaySinh);
+    nv.setLuong(Double.parseDouble(table.getValueAt(i, 6).toString()));
+    nv.setChucVu(Boolean.parseBoolean(table.getValueAt(i, 7).toString()));
+    nv.setTrangThai(Boolean.parseBoolean(table.getValueAt(i, 8).toString()));
+    list.add(nv);
+}
+        
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("NhanVien");
+        XSSFRow row = null;
+        XSSFCell cell = null;
+        row = sheet.createRow(0);
+        cell=row.createCell(0,CellType.STRING);
+        cell.setCellValue("STT");
+        cell=row.createCell(1,CellType.STRING);
+        cell.setCellValue("Mã NV");
+        cell=row.createCell(2,CellType.STRING);
+        cell.setCellValue("Tên NV");
+        cell=row.createCell(3,CellType.STRING);
+        cell.setCellValue("SDT");
+        cell=row.createCell(4,CellType.STRING);
+        cell.setCellValue("Địa chỉ");
+        cell=row.createCell(5,CellType.STRING);
+        cell.setCellValue("Ngày sinh");
+        cell=row.createCell(6,CellType.STRING);
+        cell.setCellValue("Giới tính");
+        cell=row.createCell(7,CellType.STRING);
+        cell.setCellValue("Lương");
+        cell=row.createCell(8,CellType.STRING);
+        cell.setCellValue("Chức vụ");
+        cell=row.createCell(9,CellType.STRING);
+        cell.setCellValue("Trạng thái");
+        int i = 1 ;
+        for(NhanVienDTO nv : list){
+            row = sheet.createRow(0 + i);
+            cell = row.createCell(0, CellType.NUMERIC);
+            cell.setCellValue(i);
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue(nv.getMaNV());
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue(nv.getTenNV());
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue(nv.getPhone());
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue(nv.getDiaChi());
+             cell = row.createCell(5, CellType.STRING);
+            cell.setCellValue(nv.isGioiTinh());
+            cell = row.createCell(6, CellType.STRING);
+            cell.setCellValue(nv.getNgaySinh());
+            cell = row.createCell(7, CellType.STRING);
+            cell.setCellValue(nv.getLuong());
+            cell = row.createCell(8, CellType.STRING);
+            cell.setCellValue(nv.isChucVu());
+             cell = row.createCell(9, CellType.STRING);
+            cell.setCellValue(nv.isTrangThai());
+            i++;
+        }
+         File file = new File("D://NhanVien.xlsx");
+try {
+    FileOutputStream fos = new FileOutputStream(file);
+    workbook.write(fos);
+    fos.close();
+    JOptionPane.showMessageDialog(this, "Xuất file thành công: D:/NhanVien.xlsx", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -764,6 +885,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cb_chucVu;
     public javax.swing.JComboBox<String> cb_gioiTinh;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -888,7 +1010,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             chucVu = true;
         } 
         nv.setChucVu(chucVu);
-        nv.setTrangThai(true);
+        
         return nv;
     }
     public void fillTable(){

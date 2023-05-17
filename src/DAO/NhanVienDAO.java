@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import DAO.DatabaseHelper;
+import DAO.conndb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +21,7 @@ import DTO.NhanVienDTO;
  *
  * @author defaultuser0
  */
-public class NhanVienDAO {
+public class NhanVienDAO extends conndb{
     ArrayList<NhanVienDTO> ls = new ArrayList<>();
         SimpleDateFormat date_format = new SimpleDateFormat("yyyy/MM/dd");
 
@@ -86,108 +86,106 @@ public class NhanVienDAO {
         Collections.sort(ls, cmp);
     }
     
-    public int add(NhanVienDTO nv ){
-        
-        Connection conn = null;
-        PreparedStatement sttm = null;
-        try {
-            String sSQL="insert into NhanVien(MaNV,TenNV,SDT,DiaChi,GioiTinh,NgaySinh,Luong,ChucVu,TrangThai) values(?,?,?,?,?,?,?,?,?)";
-            conn=DatabaseHelper.getDBConnect();
-            sttm=conn.prepareStatement(sSQL);
-            sttm.setString(1, nv.getMaNV() );
-            sttm.setString(2, nv.getTenNV());
-            sttm.setString(3, nv.getPhone());
-            sttm.setString(4, nv.getDiaChi());
-            sttm.setBoolean(5,nv.isGioiTinh() );
-            sttm.setString(6, date_format.format(nv.getNgaySinh()));
-            sttm.setFloat(7, (float) nv.getLuong());
-            sttm.setBoolean(8, nv.isChucVu());
-            sttm.setBoolean(9, nv.isTrangThai());
-            if(sttm.executeUpdate()>0){
-                System.out.println("Add thanh cong ");
-                return 1;
-            }
-        } catch (Exception e) {
-            System.out.println("Error"+e.toString());
-        }finally{
-            try { 
-                conn.close();
-                sttm.close();
-            } catch (Exception e) {
-            }
+   public int add(NhanVienDTO nv) throws SQLException {
+    PreparedStatement sttm = null;
+        if(openConnection()) {
+            try {
+                    String sSQL = "INSERT INTO `nhanvien`(`MaNhanVien`, `TenNhanVien`, `SoDienThoai`, `DiaChi`, `GioiTinh`, `NgaySinh`, `Luong`, `ChucVu`, `TrangThai`) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        sttm = con.prepareStatement(sSQL);
+        sttm.setString(1, nv.getMaNV());
+        sttm.setString(2, nv.getTenNV());
+        sttm.setString(3, nv.getPhone());
+        sttm.setString(4, nv.getDiaChi());
+        sttm.setBoolean(5, nv.isGioiTinh());
+        sttm.setString(6, date_format.format(nv.getNgaySinh()));
+        sttm.setFloat(7, (float) nv.getLuong());
+        sttm.setBoolean(8, nv.isChucVu());
+        sttm.setBoolean(9, nv.isTrangThai());
+        if (sttm.executeUpdate() > 0) {
+            System.out.println("Add thanh cong");
+            return 1;
+        } else {
+            System.out.println("Add that bai");
+            return -1;
         }
-        return -1;
-    }
+        } catch(Exception e) {
+             e.printStackTrace();
+        }
+       } 
+        return 0;
+}
     public ArrayList<NhanVienDTO> getall(){
         ArrayList<NhanVienDTO> ds = new ArrayList<>();
-        Connection conn = null;
         Statement sttm = null;
         ResultSet rs = null;
-        try {
-             String sSQL="select * from NhanVien";
-            conn=DatabaseHelper.getDBConnect();
-            sttm=conn.createStatement();
-            rs=sttm.executeQuery(sSQL);
-            while(rs.next()){
-                NhanVienDTO nv = new NhanVienDTO();
-                nv.setMaNV(rs.getString(1));
-                nv.setTenNV(rs.getString(2));
-                nv.setPhone(rs.getString(3));
-                nv.setDiaChi(rs.getString(4));
-                nv.setGioiTinh(rs.getBoolean(5));
-                nv.setNgaySinh(rs.getDate(6));
-                nv.setLuong((double) rs.getFloat(7));
-                nv.setChucVu(rs.getBoolean(8));
-                nv.setTrangThai(rs.getBoolean(9));
-                ds.add(nv);
+        if(openConnection()){
+            try {
+                 String sSQL="SELECT * FROM nhanvien;";
+                sttm=con.createStatement();
+                rs=sttm.executeQuery(sSQL);
+                while(rs.next()){
+                    NhanVienDTO nv = new NhanVienDTO();
+                    nv.setMaNV(rs.getString(1));
+                    nv.setTenNV(rs.getString(2));
+                    nv.setPhone(rs.getString(3));
+                    nv.setDiaChi(rs.getString(4));
+                    nv.setGioiTinh(rs.getBoolean(5));
+                    nv.setNgaySinh(rs.getDate(6));
+                    nv.setLuong((double) rs.getFloat(7));
+                    nv.setChucVu(rs.getBoolean(8));
+                    nv.setTrangThai(rs.getBoolean(9));
+                    ds.add(nv);
+                }
             }
-        } catch (Exception e) {
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return ds;
     }
     public int delete(String maNV) {
-    Connection conn = null;
-    PreparedStatement sttm = null;
-    boolean isDeleted = false;
-    try {
-        // Xóa các tài khoản liên quan đến nhân viên
-        String sSQL1 = "update taiKhoan set TrangThai = 0 where MaNV = ?";
-        conn = DatabaseHelper.getDBConnect();
-        sttm = conn.prepareStatement(sSQL1);
-        sttm.setString(1, maNV);
-        sttm.executeUpdate();
+        PreparedStatement sttm = null;
+        boolean isDeleted = false;
+        if(openConnection()) {
+            try {
+            // Xóa các tài khoản liên quan đến nhân viên
+            String sSQL1 = "UPDATE taikhoan SET trangthai = 0 WHERE MaNhanVien = ?";
 
-        // Xóa nhân viên
-        String sSQL2 = "update NhanVien set TrangThai = 0 where MaNV = ?";
-        sttm = conn.prepareStatement(sSQL2);
-        sttm.setString(1, maNV);
-        if (sttm.executeUpdate() > 0) {
-            System.out.println("Xoa thanh cong");
-            isDeleted = true;
-        }
-    } catch (SQLException e) {
-        System.out.println("Error: " + e.toString());
-    } finally {
-        try {
-            sttm.close();
-            conn.close();
+            sttm = con.prepareStatement(sSQL1);
+            sttm.setString(1, maNV);
+            sttm.executeUpdate();
+
+            // Xóa nhân viên
+            String sSQL2 = "update nhanvien set trangthai = 0 where  MaNhanVien = ?";
+            sttm = con.prepareStatement(sSQL2);
+            sttm.setString(1, maNV);
+            if (sttm.executeUpdate() > 0) {
+                System.out.println("Xoa thanh cong");
+                isDeleted = true;
+            }
         } catch (SQLException e) {
             System.out.println("Error: " + e.toString());
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error: " + e.toString());
+            }
         }
-    }
-    if (isDeleted) {
-        return 1;
-    } else {
-        return -1;
-    }
+        }
+        if (isDeleted) {
+            return 1;
+        } else {
+            return -1;
+        }
 }
-     public int update(NhanVienDTO nvNew){
-       Connection conn = null;
-        PreparedStatement sttm = null;
+    public int update(NhanVienDTO nvNew) {
+    if (openConnection()) {
         try {
-            String sSQL="update  NhanVien set TenNV=?,SDT=?,DiaChi=?,GioiTinh=?,NgaySinh=?,Luong=?,ChucVu=?,TrangThai=? where MaNV=?";
-            conn=DatabaseHelper.getDBConnect();
-            sttm=conn.prepareStatement(sSQL);
+            PreparedStatement sttm = null;
+            String sSQL = "UPDATE `nhanvien` SET `TenNhanVien`=?, `SoDienThoai`=?, `DiaChi`=?, `GioiTinh`=?, `NgaySinh`=?, `Luong`=?, `ChucVu`=?, `TrangThai`=? WHERE `MaNhanVien`=?";
+            sttm = con.prepareStatement(sSQL);
             sttm.setString(1, nvNew.getTenNV());
             sttm.setString(2, nvNew.getPhone());
             sttm.setString(3, nvNew.getDiaChi());
@@ -197,31 +195,32 @@ public class NhanVienDAO {
             sttm.setBoolean(7, nvNew.isChucVu());
             sttm.setBoolean(8, nvNew.isTrangThai());
             sttm.setString(9, nvNew.getMaNV());
-
-            if(sttm.executeUpdate()>0){
-                System.out.println("update thanh cong ");
+            
+            if (sttm.executeUpdate() > 0) {
+                System.out.println("Update thành công");
                 return 1;
             }
         } catch (Exception e) {
-            System.out.println("Error"+e.toString());
-        }finally{
-            try { 
-                conn.close();
-                sttm.close();
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        return -1;
     }
+    return -1;
+}
      public NhanVienDTO find(String maNV){
-        Connection conn = null;
-        PreparedStatement sttm = null;
-        ResultSet rs=null;
-         NhanVienDTO nv = new NhanVienDTO();
-        try {
-            String sSQL="select * from NhanVien where MaNV=?";
-            conn=DatabaseHelper.getDBConnect();
-            sttm=conn.prepareStatement(sSQL);
+         if(openConnection()) {
+             try {
+                PreparedStatement sttm = null;
+                ResultSet rs=null;
+                NhanVienDTO nv = new NhanVienDTO();
+                String sSQL="SELECT * FROM nhanvien WHERE MaNhanVien = ?";
+            
+            sttm=con.prepareStatement(sSQL);
             sttm.setString(1, maNV);
            rs=sttm.executeQuery();
                 sttm.setString(1, maNV);
@@ -239,28 +238,27 @@ public class NhanVienDAO {
                 return nv;
                 
             }
-            
-        } catch (Exception e) {
-            System.out.println("Error"+e.toString());
-        }finally{
+             } catch (Exception e) {
+             
+             }finally{
             try { 
-                conn.close();
-                sttm.close();
+                con.close();
             } catch (Exception e) {
             }
         }
+         }
         return null;
     }
      public ArrayList<NhanVienDTO> search(String maNV){
         ArrayList<NhanVienDTO> lsSearch = new ArrayList<>();
-         Connection conn = null;
         PreparedStatement sttm = null;
         ResultSet rs=null;
          NhanVienDTO nv = new NhanVienDTO();
-        try {
-            String sSQL="select * from NhanVien where MaNV=?";
-            conn=DatabaseHelper.getDBConnect();
-            sttm=conn.prepareStatement(sSQL);
+         if(openConnection()) {
+             try {
+             String sSQL="SELECT * FROM nhanvien WHERE MaNhanVien = ?";
+           
+            sttm=con.prepareStatement(sSQL);
             sttm.setString(1, maNV);
            rs=sttm.executeQuery();
                 sttm.setString(1, maNV);
@@ -277,38 +275,40 @@ public class NhanVienDAO {
                     lsSearch.add(nv);
                 
             }
-            
-        } catch (Exception e) {
+             } catch (Exception e) {
             System.out.println("Error"+e.toString());
         }finally{
             try { 
-                conn.close();
-                sttm.close();
+                con.close();
             } catch (Exception e) {
             }
         }
+         }
+
         return lsSearch;
     }
      public void xoaAll(){
-         Connection conn = null;
         Statement sttm = null;
         ResultSet rs = null;
            ArrayList<NhanVienDTO> ds = new ArrayList<>();
-        try {
-             String sSQL="delete  from NhanVien";
-            conn=DatabaseHelper.getDBConnect();
-            sttm=conn.createStatement();
+           if(openConnection()) {
+                       try {
+             String sSQL="DELETE FROM nhanvien";
+            
+            sttm=con.createStatement();
             sttm.executeUpdate(sSQL);
             
         } catch (Exception e) {
              System.out.println("Error"+e.toString());
         }finally{
             try { 
-                conn.close();
+                con.close();
                 sttm.close();
             } catch (Exception e) {
             }
         }
+           }
+
      }
     
      
