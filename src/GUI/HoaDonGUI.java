@@ -51,7 +51,7 @@ public class HoaDonGUI extends JPanel {
             gbc.gridy = 0;
             gbc.weighty = 1;
             gbc.weightx = 1;
-            gbc.insets = new Insets(0, 10, 10, 10);
+            gbc.insets = new Insets(5, 10, 10, 10);
             gbc.fill = GridBagConstraints.BOTH;
             add(pnlThongTinKH, gbc);
 
@@ -68,7 +68,7 @@ public class HoaDonGUI extends JPanel {
 
 
             thongtinkh_init();
-            pnlThongTinSP.setBorder(getTitleBorder("Thông tin sản phẩm"));
+            thongtinsp_init();
             pnlThongTinHD.setBorder(getTitleBorder("Thông tin hoá đơn"));
 
 
@@ -89,15 +89,17 @@ public class HoaDonGUI extends JPanel {
             gbc.gridx = 0;
             gbc.gridy = 0;
             gbc.weightx = 1;
-//            gbc.insets = new Insets(0, 10, 10, 10);
+            gbc.insets = new Insets(10, 10, 10, 10);
             gbc.fill = GridBagConstraints.HORIZONTAL;
 
             JLabel lbInput = new JLabel("Nhập thông tin khách hàng để tìm kiếm");
+            lbInput.setFont(new Font(Variable.primaryFont.getName(), Font.BOLD, 13));
             JTextField inputThongTinKH = new JTextField();
             inputThongTinKH_init(inputThongTinKH);
 
             pnlThongTinKH.add(lbInput, gbc);
 
+            gbc.insets = new Insets(0, 10, 10, 10);
             gbc.gridy = 1;
             pnlThongTinKH.add(inputThongTinKH, gbc);
 
@@ -112,7 +114,7 @@ public class HoaDonGUI extends JPanel {
             JScrollPane tableView = new JScrollPane(tableData);
             gbc.gridy = 2;
             gbc.fill = GridBagConstraints.BOTH;
-            gbc.insets = new Insets(0, 0, 0, 0);
+            gbc.weighty = 1;
             pnlThongTinKH.add(tableView, gbc);
 
         }
@@ -138,6 +140,51 @@ public class HoaDonGUI extends JPanel {
 
                 }
             });
+        }
+
+        void thongtinsp_init(){
+            pnlThongTinSP.setLayout(new GridBagLayout());
+            pnlThongTinSP.setBorder(getTitleBorder("Thông tin sản phẩm"));
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weightx = 1;
+            gbc.insets = new Insets(0, 10, 10, 10);
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+
+            JLabel lbInput = new JLabel("Nhập thông tin sản phẩm để tìm kiếm");
+            JTextField inputThongTinKH = new JTextField();
+            inputThongTinKH_init(inputThongTinKH);
+
+            pnlThongTinSP.add(lbInput, gbc);
+
+            gbc.gridy = 1;
+            pnlThongTinSP.add(inputThongTinKH, gbc);
+
+            JTable tableData = new JTable(
+                    new Object[][]{
+                            new Object[]{
+                                    new ImageIcon("img/coca.png"),
+                                    "",
+                                    "",
+                                    "",
+                                    ""
+                            }
+                    },
+                    new String[]{
+                            "ID",
+                            "",
+                            "Tên sản phẩm",
+                            "Đơn giá",
+                            "Số lượng"
+                    });
+//            tableData.ta
+            JScrollPane tableView = new JScrollPane(tableData);
+            gbc.gridy = 2;
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weighty = 1;
+            pnlThongTinSP.add(tableView, gbc);
+
         }
     }
 
