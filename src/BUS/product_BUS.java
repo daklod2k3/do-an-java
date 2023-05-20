@@ -46,16 +46,4 @@ public class product_BUS {
             return "Ẩn thành công";
         return "Ẩn thất bại";
     }
-
-    public ArrayList<product_DTO> findByLoai(String maloai){
-        p = new product_DAO();
-        ArrayList<product_DTO> rs = new ArrayList<>();
-        ArrayList<product_DTO> list = p.getAllProducts();
-        for (product_DTO item : list){
-            if (item.getMaLoai() == maloai)
-                rs.add(item);
-        }
-        return rs;
-    }
-
 }

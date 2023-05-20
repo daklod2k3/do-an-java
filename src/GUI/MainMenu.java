@@ -1,5 +1,6 @@
 package GUI;
 
+import DAO.DBCONNECT;
 import DTO.TaiKhoanDTO;
 import GUI.Component.*;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -54,6 +55,7 @@ public class MainMenu extends JFrame{
 //        setSize( 1800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        setUndecorated(true);
+
 
 
         //init component
@@ -200,6 +202,7 @@ public class MainMenu extends JFrame{
         add(panelLeft, BorderLayout.CENTER);
 
 
+//        pack();
         setVisible(true);
     }
 
@@ -212,7 +215,6 @@ public class MainMenu extends JFrame{
         }
 //        new DangNhapGUI();
         new MainMenu(null);
-
     }
 
     public JLabel getlbRightPanel(String lbTxt, String imgLink){

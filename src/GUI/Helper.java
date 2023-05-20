@@ -1,7 +1,12 @@
 package GUI;
 
+import BUS.product_BUS;
+import DTO.product_DTO;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Helper {
 
@@ -40,4 +45,25 @@ public class Helper {
         return str;
     }
 
+    public static List<product_DTO> findSPbyKey(String str){
+        product_BUS bus = new product_BUS();
+        List<product_DTO> rs = new ArrayList<>();
+        List<product_DTO> products = bus.getAllProducts();
+        String[] search_keys = str.trim().split("\\s*,\\s*");
+
+        List<product_DTO> search_list = bus.getAllProducts();
+        for (product_DTO item : products){
+            int count = 0;
+            for (String key: search_keys){
+                if (item.getMaSP().contains(key) || item.getTenSP().contains(key)){
+                    count ++;
+                }
+            }
+            if (count == search_keys.length)
+                rs.add(item);
+        }
+
+            System.out.println(rs.size());
+        return rs;
+    }
 }

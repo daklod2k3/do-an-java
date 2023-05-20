@@ -1,9 +1,8 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import MyCustom.MyDialog;
+
+import java.sql.*;
 
 public class DBCONNECT {
 
@@ -14,7 +13,7 @@ public class DBCONNECT {
 
     private static Statement state;
     private static Connection conn;
-    private static int errType = 0;
+    public static int errType = 0;
     // 0 - ko có lỗi
     // 1 - lỗi không tìm thấy driver
     // 2 - lỗi kết nối database
@@ -45,6 +44,27 @@ public class DBCONNECT {
                 return null;
             }
         } else return state;
+    }
+
+    public static String getError(){
+        return switch (DBCONNECT.errType) {
+            case 1 -> "Lỗi không tìm thấy driver";
+            case 2 -> "Lỗi không kết nối được database";
+            case 3 -> "Lỗi truy xuất query";
+            default -> "Không có lỗi";
+        };
+    }
+
+    public static ResultSet getResult(String query){
+        try {
+            ResultSet rs = DBCONNECT.state.executeQuery(query);
+            return rs;
+        }catch (SQLException e){
+            DBCONNECT.errType = 3;
+            System.out.println(e.getMessage());
+            new MyDialog(getError(), 1);
+        }
+        return null;
     }
 
 }
