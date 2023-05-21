@@ -32,7 +32,7 @@ public class HoaDonGUI extends JPanel {
 //        init component
         pnlTabbed = new JTabbedPane();
         pnlTabbed.addTab("Tạo hoá đơn", Helper.resizeImg(new ImageIcon("img/plus.png"), 40), new AddHoaDonGUI());
-        pnlTabbed.addTab("Danh sách hoá đơn", Helper.resizeImg(new ImageIcon("img/list.png"), 40), new hdview());
+        pnlTabbed.addTab("Danh sách hoá đơn", Helper.resizeImg(new ImageIcon("img/list.png"), 40), new JPanel());
         add(pnlTabbed, gbc);
     }
 
