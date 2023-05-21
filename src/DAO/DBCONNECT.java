@@ -1,7 +1,9 @@
 package DAO;
 
+import GUI.MainMenu;
 import MyCustom.MyDialog;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class DBCONNECT {
@@ -22,12 +24,19 @@ public class DBCONNECT {
     public static void connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(host + dbname, user, pass);
+            conn = DriverManager.getConnection(host + dbname + "?useSSL=false", user, pass);
         }catch (SQLException e){
-            errType = 2;
+            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối Database!" , "", JOptionPane.ERROR_MESSAGE);
+            MainMenu.currentFrame.dispose();
         }catch (ClassNotFoundException e){
-            errType = 1;
+            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi không tìm thấy jdbc!", "", JOptionPane.ERROR_MESSAGE);
+            MainMenu.currentFrame.dispose();
         }
+    }
+
+    public static Connection getConn(){
+        connect();
+        return conn;
     }
 
     public static Statement getState(){
@@ -41,6 +50,8 @@ public class DBCONNECT {
                 return state;
             }catch (SQLException e){
                 errType = 3;
+                JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối database!", "", JOptionPane.ERROR_MESSAGE);
+                MainMenu.currentFrame.dispose();
                 return null;
             }
         } else return state;
@@ -57,12 +68,13 @@ public class DBCONNECT {
 
     public static ResultSet getResult(String query){
         try {
-            ResultSet rs = DBCONNECT.state.executeQuery(query);
+            ResultSet rs = DBCONNECT.getState().executeQuery(query);
             return rs;
         }catch (SQLException e){
             DBCONNECT.errType = 3;
             System.out.println(e.getMessage());
-            new MyDialog(getError(), 1);
+            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối database!", "", JOptionPane.ERROR_MESSAGE);
+            MainMenu.currentFrame.dispose();
         }
         return null;
     }

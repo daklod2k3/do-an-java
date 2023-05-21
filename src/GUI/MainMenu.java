@@ -1,6 +1,7 @@
 package GUI;
 
 import DAO.DBCONNECT;
+import DAO.conndb;
 import DTO.TaiKhoanDTO;
 import GUI.Component.*;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -26,6 +27,7 @@ public class MainMenu extends JFrame{
 
     private RightLabel activingLb;
 
+    public static JFrame currentFrame;
 
 
     private TaiKhoanDTO loginUser;
@@ -96,13 +98,16 @@ public class MainMenu extends JFrame{
         lbUserImg.setPreferredSize(new Dimension(150, 150));
         lbUserImg.setIcon(Helper.resizeImg(new ImageIcon("img/emp-male.png"), 150));
 
-        JLabel lbUserName = new JLabel("<html> <p style=\"text-align: center;\">Trần Dương Đắc Lộc</p></html>");
+
+        JLabel lbUserName = new JLabel("<html> <p style=\"text-align: center;\">" + this.loginUser.getNv().getTenNV() +"</p></html>");
+//        JLabel lbUserName = new JLabel("<html> <p style=\"text-align: center;\">" + "loc" +"</p></html>");
         lbUserName.setPreferredSize(new Dimension(170, 70));
         lbUserName.setHorizontalAlignment(SwingConstants.CENTER);
         lbUserName.setFont(new Font(getFont().getName(), Font.BOLD, 25));
         lbUserName.setForeground(Color.WHITE);
 
-        JLabel lbUserRole = new JLabel("Quản trị viên");
+        JLabel lbUserRole = new JLabel(this.loginUser.getNv().isChucVu() ? "Quản trị viên" : "Nhân viên");
+//        JLabel lbUserRole = new JLabel("quan tri vien");
         lbUserRole.setForeground(Variable.green);
 //        lbUserRole.setPreferredSize(new Dimension(170, 30));
         lbUserRole.setFont(new Font(getFont().getName(), Font.BOLD, 17));
@@ -120,9 +125,10 @@ public class MainMenu extends JFrame{
         ArrayList<RightLabel> lbRightList = new ArrayList<>();
         lbRightList.add(new RightLabel("cart", "Hoá đơn", new HoaDonGUI()));
         lbRightList.add(new RightLabel("store", "Kho hàng", new product_GUI()));
-        lbRightList.add(new RightLabel("store", "Nhập hàng", new phieuNhap_GUI()));
+        lbRightList.add(new RightLabel("warehouse", "Nhập hàng", new phieuNhap_GUI()));
         lbRightList.add(new RightLabel("supermaket", "Nhà cung cấp", new NhaCungCapGUI()));
         lbRightList.add(new RightLabel("user", "Tài khoản", new QuanLyTaiKhoan()));
+        lbRightList.add(new RightLabel("stats", "Thống kê",new ThongKePanel()));
 
         for (RightLabel item : lbRightList){
             if (item == lbRightList.get(0)){
@@ -139,6 +145,13 @@ public class MainMenu extends JFrame{
                         CardLayout cardLayout = (CardLayout) panelCenter.getLayout();
                         cardLayout.show(panelCenter, item.getLbTxt());
                         lbTitle.setText("QUẢN LÝ " + item.getLbTxt().toUpperCase());
+                        switch (item.getLbTxt()){
+                            case "Hóa đơn":
+                                MainMenu.currentFrame.setMaximumSize(new Dimension(DEFALUT_WIDTH, DEFAULT_HEIGHT));
+                                break;
+                            default:
+                                MainMenu.currentFrame.setMaximumSize(new Dimension(1230, 630));
+                        }
                     }
                 }
                 @Override
@@ -207,14 +220,23 @@ public class MainMenu extends JFrame{
     }
 
     public static void main(String[] args) {
+//        DBCONNECT.connect();
         System.setProperty("sun.java2d.uiScale", "1.0");
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             System.out.println(ex.getMessage());
         }
-//        new DangNhapGUI();
-        new MainMenu(null);
+        TaiKhoanView login = new TaiKhoanView();
+        MainMenu.currentFrame = login;
+        conndb con = new conndb();
+        con.openConnection();
+
+//        new MainMenu(null);
+        if (DBCONNECT.getState() == null || con.getConnection() == null)
+            JOptionPane.showMessageDialog(login, "Lỗi không kết nối được database");
+        else
+            login.setVisible(true);
     }
 
     public JLabel getlbRightPanel(String lbTxt, String imgLink){

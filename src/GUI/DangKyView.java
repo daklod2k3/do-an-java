@@ -22,7 +22,7 @@ public class DangKyView extends javax.swing.JFrame {
     /**
      * Creates new form DangKyView
      */
-    Border panel_border = BorderFactory.createMatteBorder(2,2,2,2,Color.gray);
+    Border panel_border = BorderFactory.createMatteBorder(2,2,2,2,Color.blue);
     Border textfield_border = BorderFactory.createMatteBorder(0,0,2,0,Color.white);
     public DangKyView() {
         initComponents();
@@ -89,11 +89,12 @@ public class DangKyView extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new Color(194, 177, 163));
+        jPanel2.setBackground(new Color(0, 204, 255));
 
-        txt_taiKhoan.setBackground(new Color(194, 177, 163));
+        txt_taiKhoan.setBackground(new Color(0, 204, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new Color(255, 255, 255));
         jLabel3.setText("Tên tài khoản");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -117,11 +118,12 @@ public class DangKyView extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jPanel1.setBackground(new Color(194, 177, 163));
+        jPanel1.setBackground(new Color(0, 204, 255));
 
-        txt_matKhau.setBackground(new Color(194, 177, 163));
+        txt_matKhau.setBackground(new Color(0, 204, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new Color(255, 255, 255));
         jLabel2.setText("Mật khẩu");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -145,11 +147,12 @@ public class DangKyView extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new Color(194, 177, 163));
+        jPanel3.setBackground(new Color(0, 204, 255));
 
-        txt_nhapLaimatKhau.setBackground(new Color(194, 177, 163));
+        txt_nhapLaimatKhau.setBackground(new Color(0, 204, 255));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new Color(255, 255, 255));
         jLabel4.setText("Nhập lại mật khẩu");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -173,11 +176,12 @@ public class DangKyView extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        jPanel4.setBackground(new Color(194, 177, 163));
+        jPanel4.setBackground(new Color(0, 204, 255));
 
-        txt_maNV.setBackground(new Color(194, 177, 163));
+        txt_maNV.setBackground(new Color(0, 204, 255));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new Color(255, 255, 255));
         jLabel5.setText("Mã nhân viên");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

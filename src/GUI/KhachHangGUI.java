@@ -38,7 +38,6 @@ public class KhachHangGUI extends JPanel {
      */
     public KhachHangGUI() {
         initComponents();
-//        setLocationRelativeTo(this);
         tbl_KhachHang.getColumn("Xoá").setCellRenderer(new ButtonRenderer());
         MouseClickBtn();
             
@@ -85,7 +84,6 @@ public class KhachHangGUI extends JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_KhachHang = new javax.swing.JTable();
 
-//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -118,7 +116,7 @@ public class KhachHangGUI extends JPanel {
         refBtn.setBackground(new java.awt.Color(0, 204, 255));
         refBtn.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         refBtn.setForeground(new java.awt.Color(255, 255, 255));
-        refBtn.setIcon(new javax.swing.ImageIcon(("img/Refresh.png"))); // NOI18N
+        refBtn.setIcon(new javax.swing.ImageIcon(("img/phuc_Refresh.png"))); // NOI18N
         refBtn.setText("Làm mới");
         refBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +127,7 @@ public class KhachHangGUI extends JPanel {
         jButton1.setBackground(new java.awt.Color(0, 204, 255));
         jButton1.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(("img/view.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(("img/phuc_phuc_view.png"))); // NOI18N
         jButton1.setText("Danh sách ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +138,7 @@ public class KhachHangGUI extends JPanel {
         addBtn.setBackground(new java.awt.Color(0, 204, 255));
         addBtn.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         addBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addBtn.setIcon(new javax.swing.ImageIcon(("img/Plus.png"))); // NOI18N
+        addBtn.setIcon(new javax.swing.ImageIcon(("img/phuc_Plus.png"))); // NOI18N
         addBtn.setText("Thêm");
         addBtn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         addBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -153,7 +151,7 @@ public class KhachHangGUI extends JPanel {
         updateBtn.setBackground(new java.awt.Color(0, 204, 255));
         updateBtn.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         updateBtn.setForeground(new java.awt.Color(255, 255, 255));
-        updateBtn.setIcon(new javax.swing.ImageIcon(("img/tools.png"))); // NOI18N
+        updateBtn.setIcon(new javax.swing.ImageIcon(("img/phuc_tools.png"))); // NOI18N
         updateBtn.setText("Sửa");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +208,7 @@ public class KhachHangGUI extends JPanel {
         jButton2.setBackground(new java.awt.Color(51, 204, 255));
         jButton2.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(("img/excel.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(("img/phuc_excel.png"))); // NOI18N
         jButton2.setText("Xuất excel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

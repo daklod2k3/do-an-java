@@ -118,6 +118,7 @@ public class NhanVienView extends JPanel {
             tbl_danglamviec.setRowSorter(sorter2);
             tbl_nghilam.setRowSorter(sorter3);
         } else if (gioiTinh.equals("Tất cả") && !chucVu.equals("Tất cả")) {
+              sorter1.setRowFilter(RowFilter.regexFilter(chucVu, 7));
             sorter2.setRowFilter(RowFilter.regexFilter(chucVu, 7));
             sorter3.setRowFilter(RowFilter.regexFilter(chucVu, 7));
             tbl_danglamviec.setRowSorter(sorter2);
@@ -158,6 +159,7 @@ public class NhanVienView extends JPanel {
             tbl_danglamviec.setRowSorter(sorter2);
             tbl_nghilam.setRowSorter(sorter3);
         } else if (gioiTinh.equals("Tất cả") && !chucVu.equals("Tất cả")) {
+              sorter1.setRowFilter(RowFilter.regexFilter(chucVu, 7));
             sorter2.setRowFilter(RowFilter.regexFilter(chucVu, 7));
             sorter3.setRowFilter(RowFilter.regexFilter(chucVu, 7));
             tbl_danglamviec.setRowSorter(sorter2);
@@ -255,7 +257,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(("img/search.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/phuc_image/phuc_search.png"))); // NOI18N
         jLabel1.setText("Tìm theo tên ");
 
         searchField.addCaretListener(new CaretListener() {
@@ -302,7 +304,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
         jLabel11.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jLabel11.setText("Giới tính");
 
-        btnThem.setIcon(new javax.swing.ImageIcon(("img/Plus.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/phuc_image/phuc_add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -310,7 +312,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnXoa.setIcon(new javax.swing.ImageIcon(("img/delete.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/phuc_image/phuc_delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -318,7 +320,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnSua.setIcon(new javax.swing.ImageIcon(("img/tools.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/phuc_image/phuc_edit .png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -326,7 +328,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnLamMoi.setIcon(new javax.swing.ImageIcon(("img/Refresh.png"))); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/phuc_image/phuc_Refresh.png"))); // NOI18N
         btnLamMoi.setText("Làm mới");
         btnLamMoi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -334,7 +336,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             }
         });
 
-        btnHienThi.setIcon(new javax.swing.ImageIcon(("img/show.png"))); // NOI18N
+        btnHienThi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/phuc_image/phuc_show.png"))); // NOI18N
         btnHienThi.setText("Hiển thị");
         btnHienThi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -458,7 +460,7 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(("img/excel.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/phuc_image/phuc_excel.png"))); // NOI18N
         jButton1.setText("Xuất excel");
         jButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -630,7 +632,6 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-//        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLamMoiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
@@ -745,30 +746,43 @@ jTabbedPane2.addTab(title, component); // Thêm lại tab "Nghỉ việc" vào J
     }//GEN-LAST:event_txt_diaChiActionPerformed
 
     private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Component com = jTabbedPane2.getSelectedComponent();
-       JScrollPane scrollpane = (JScrollPane) com;
-       JTable table = (JTable) scrollpane.getViewport().getView();
-       ArrayList<NhanVienDTO> list = new ArrayList<>();
-       int rowCount = table.getRowCount();
-       int colCount = table.getColumnCount();
-      for (int i = 0; i < rowCount; i++) {
+     Component com = jTabbedPane2.getSelectedComponent();
+JScrollPane scrollpane = (JScrollPane) com;
+JTable table = (JTable) scrollpane.getViewport().getView();
+ArrayList<NhanVienDTO> list = new ArrayList<>();
+int rowCount = table.getRowCount();
+int colCount = table.getColumnCount();
+for (int i = 0; i < rowCount; i++) {
     NhanVienDTO nv = new NhanVienDTO();
     nv.setMaNV(table.getValueAt(i, 0).toString());
     nv.setTenNV(table.getValueAt(i, 1).toString());
     nv.setPhone(table.getValueAt(i, 2).toString());
     nv.setDiaChi(table.getValueAt(i, 3).toString());
-    nv.setGioiTinh(Boolean.parseBoolean(table.getValueAt(i, 4).toString()));
-  String ngaySinhStr = (String) table.getValueAt(i, 5);
-Date ngaySinh = null;
-try {
-    ngaySinh = date_format.parse(ngaySinhStr);
-} catch (ParseException e) {
-    e.printStackTrace();
-}
-nv.setNgaySinh(ngaySinh);
-    nv.setLuong(Double.parseDouble(table.getValueAt(i, 6).toString()));
-    nv.setChucVu(Boolean.parseBoolean(table.getValueAt(i, 7).toString()));
-    nv.setTrangThai(Boolean.parseBoolean(table.getValueAt(i, 8).toString()));
+
+    String gioiTinhStr = table.getValueAt(i, 4).toString();
+    boolean gioiTinh = gioiTinhStr.equalsIgnoreCase("nam");
+    nv.setGioiTinh(gioiTinh);
+
+    String ngaySinhStr = table.getValueAt(i, 5).toString();
+    Date ngaySinh = null;
+    try {
+        ngaySinh = date_format.parse(ngaySinhStr);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    nv.setNgaySinh(ngaySinh);
+
+    double luong = Double.parseDouble(table.getValueAt(i, 6).toString());
+    nv.setLuong(luong);
+
+    String chucVuStr = table.getValueAt(i, 7).toString();
+    boolean chucVu = chucVuStr.equalsIgnoreCase("Nhân viên");
+    nv.setChucVu(chucVu);
+
+    String trangThaiStr = table.getValueAt(i, 8).toString();
+    boolean trangThai = trangThaiStr.equalsIgnoreCase("Đang làm việc");
+    nv.setTrangThai(trangThai);
+
     list.add(nv);
 }
         
@@ -810,16 +824,21 @@ nv.setNgaySinh(ngaySinh);
             cell.setCellValue(nv.getPhone());
             cell = row.createCell(4, CellType.STRING);
             cell.setCellValue(nv.getDiaChi());
-             cell = row.createCell(5, CellType.STRING);
-            cell.setCellValue(nv.isGioiTinh());
-            cell = row.createCell(6, CellType.STRING);
-            cell.setCellValue(nv.getNgaySinh());
-            cell = row.createCell(7, CellType.STRING);
-            cell.setCellValue(nv.getLuong());
-            cell = row.createCell(8, CellType.STRING);
-            cell.setCellValue(nv.isChucVu());
-             cell = row.createCell(9, CellType.STRING);
-            cell.setCellValue(nv.isTrangThai());
+         cell = row.createCell(5, CellType.STRING); // Cột ngày sinh
+String ngaySinhFormatted = date_format.format(nv.getNgaySinh());
+cell.setCellValue(ngaySinhFormatted);
+
+cell = row.createCell(6, CellType.STRING); // Cột giới tính
+cell.setCellValue(nv.isGioiTinh() ? "Nam" : "Nữ");
+
+cell = row.createCell(7, CellType.STRING); // Cột lương
+cell.setCellValue(nv.getLuong());
+
+cell = row.createCell(8, CellType.STRING); // Cột chức vụ
+cell.setCellValue(nv.isChucVu()?"Nhân viên":"Quản lý");
+
+cell = row.createCell(9, CellType.STRING); // Cột trạng thái
+cell.setCellValue(nv.isTrangThai());
             i++;
         }
          File file = new File("D://NhanVien.xlsx");
@@ -990,6 +1009,8 @@ try {
         } 
         nv.setChucVu(chucVu);
         nv.setTrangThai(true);
+       
+        
         return nv;
     }
     public NhanVienDTO getModelUpdate() throws ParseException{
@@ -1010,7 +1031,11 @@ try {
             chucVu = true;
         } 
         nv.setChucVu(chucVu);
-        
+         if(dao.checkTrangThai(txt_maNV.getText())){
+             nv.setTrangThai(true);
+        }else{
+            nv.setTrangThai(false);
+        }
         return nv;
     }
     public void fillTable(){

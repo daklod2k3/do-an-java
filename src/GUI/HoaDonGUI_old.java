@@ -1,7 +1,5 @@
 package GUI;
 
-import GUI.Component.Variable;
-
 import javax.swing.*;
 import java.awt.*;
 

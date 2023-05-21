@@ -5,6 +5,9 @@ import DTO.product_DTO;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,4 +69,42 @@ public class Helper {
             System.out.println(rs.size());
         return rs;
     }
+
+    public static String formatMoney(String value){
+        try {
+            return formatMoney(Float.parseFloat(value));
+        } catch (NumberFormatException e){
+            return "";
+        }
+    }
+
+    public static String formatMoney(Float value){
+        String str = String.valueOf(value);
+        int indexOfDecimal = str.indexOf(".");
+        int number = Integer.parseInt(str.substring(0, indexOfDecimal));
+        int numberAfterDot = Integer.parseInt(str.substring(indexOfDecimal + 1));
+        String rs = "";
+        for (int i = indexOfDecimal; i > 0; i-=3){
+            str = str.substring(0, i) + "." + str.substring(i, str.length() - 1);
+        }
+//        rs += String.valueOf(number);
+        return str.substring(0, str.length() - 1);
+    }
+
+    public static Date getDate(String dateString){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date sqlDate;
+        try {
+            java.util.Date utilDate = dateFormat.parse(dateString);
+            sqlDate = new Date(utilDate.getTime());
+            return sqlDate;
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
 }

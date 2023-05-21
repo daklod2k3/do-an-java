@@ -7,6 +7,9 @@ public class ChiTietHD {
     private int SoLuong;
     private boolean status;
 
+    public ChiTietHD(){
+
+    }
     public ChiTietHD(String MAMH, String MAHD, float donGia, int soLuong, boolean status) {
         this.MAMH = MAMH;
         this.MAHD = MAHD;
@@ -47,7 +50,7 @@ public class ChiTietHD {
         SoLuong = soLuong;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

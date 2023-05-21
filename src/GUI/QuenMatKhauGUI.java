@@ -76,11 +76,12 @@ public class QuenMatKhauGUI extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(194, 177, 163));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
-        txt_taiKhoan.setBackground(new java.awt.Color(194, 177, 163));
+        txt_taiKhoan.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên tài khoản");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -104,11 +105,12 @@ public class QuenMatKhauGUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jPanel1.setBackground(new java.awt.Color(194, 177, 163));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
 
-        txt_matKhau.setBackground(new java.awt.Color(194, 177, 163));
+        txt_matKhau.setBackground(new java.awt.Color(0, 205, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mật khẩu mới");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -132,11 +134,12 @@ public class QuenMatKhauGUI extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(194, 177, 163));
+        jPanel3.setBackground(new java.awt.Color(0, 204, 255));
 
-        txt_nhapLaimatKhau.setBackground(new java.awt.Color(194, 177, 163));
+        txt_nhapLaimatKhau.setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nhập lại mật khẩu ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -309,7 +312,7 @@ public class QuenMatKhauGUI extends javax.swing.JFrame {
         tk.setTenTK(txt_taiKhoan.getText());
         tk.setMatKhau(Arrays.toString(txt_matKhau.getPassword()));
         tk.setNv(nv);
-        
+      
         
         return tk;
     }

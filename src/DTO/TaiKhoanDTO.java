@@ -4,6 +4,8 @@
  */
 package DTO;
 
+import DTO.NhanVienDTO;
+
 /**
  *
  * @author defaultuser0

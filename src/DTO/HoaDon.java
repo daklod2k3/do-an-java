@@ -1,6 +1,6 @@
 package DTO;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class HoaDon {
     private String MAHD;
@@ -10,6 +10,7 @@ public class HoaDon {
     private Date NgayLap;
     private int status;
 
+    public HoaDon(){};
     public HoaDon(String MAHD, String MANV, String MAKH, float tongTien, Date ngayLap, int status) {
         this.MAHD = MAHD;
         this.MANV = MANV;

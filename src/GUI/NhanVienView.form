@@ -259,7 +259,7 @@
               <Font name="Monospaced" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/search.png"/>
+              <Image iconType="3" name="/phuc_image/phuc_search.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xec;m theo t&#xea;n "/>
           </Properties>
@@ -367,7 +367,7 @@
         <Component class="javax.swing.JButton" name="btnThem">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/Plus.png"/>
+              <Image iconType="3" name="/phuc_image/phuc_add.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
           </Properties>
@@ -378,7 +378,7 @@
         <Component class="javax.swing.JButton" name="btnXoa">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/delete.png"/>
+              <Image iconType="3" name="/phuc_image/phuc_delete.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
           </Properties>
@@ -389,7 +389,7 @@
         <Component class="javax.swing.JButton" name="btnSua">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/tools.png"/>
+              <Image iconType="3" name="/phuc_image/phuc_edit .png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
           </Properties>
@@ -400,7 +400,7 @@
         <Component class="javax.swing.JButton" name="btnLamMoi">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/Refresh.png"/>
+              <Image iconType="3" name="/phuc_image/phuc_Refresh.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
           </Properties>
@@ -411,7 +411,7 @@
         <Component class="javax.swing.JButton" name="btnHienThi">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/show.png"/>
+              <Image iconType="3" name="/phuc_image/phuc_show.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Hi&#x1ec3;n th&#x1ecb;"/>
           </Properties>
@@ -652,7 +652,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/image/excel.png"/>
+              <Image iconType="3" name="/phuc_image/phuc_excel.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t excel"/>
           </Properties>

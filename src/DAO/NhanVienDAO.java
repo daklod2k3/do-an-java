@@ -180,6 +180,35 @@ public class NhanVienDAO extends conndb{
             return -1;
         }
 }
+    public boolean checkTrangThai(String maNV) {
+    PreparedStatement sttm = null;
+    ResultSet rs = null;
+    boolean trangThai = false;
+    if (openConnection()) {
+        try {
+            String sSQL = "SELECT TrangThai FROM nhanvien WHERE MaNhanVien = ?";
+            sttm = con.prepareStatement(sSQL);
+            sttm.setString(1, maNV);
+            rs = sttm.executeQuery();
+            
+            if (rs.next()) {
+                trangThai = rs.getBoolean("TrangThai");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.toString());
+        } finally {
+            try {
+                rs.close();
+                sttm.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error: " + e.toString());
+            }
+        }
+    }
+    
+    return trangThai;
+}
     public int update(NhanVienDTO nvNew) {
     if (openConnection()) {
         try {
