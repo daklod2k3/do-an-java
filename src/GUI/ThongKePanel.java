@@ -43,6 +43,7 @@ public class ThongKePanel extends JPanel {
     private HoaDonBUS hoaDonBUS;
     private List<Integer> dataChart = new ArrayList<>();
     DefaultCategoryDataset dataset;
+    private boolean updating;
     ChartPanel chartPanel;
     public ThongKePanel(){
 
@@ -126,6 +127,7 @@ public class ThongKePanel extends JPanel {
         chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(400, 400));
 
+
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.ipadx = 200;
@@ -144,10 +146,17 @@ public class ThongKePanel extends JPanel {
                 "2021",
                 "2022"
         });
+        cbNam.setModel(new DefaultComboBoxModel(getAllDate().toArray()));
+
         cbNam.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                updateData();
+                System.out.println("test");
+                if (e.getStateChange() == ItemEvent.SELECTED){
+//                    updateChart();
+
+                }
+
             }
         });
 //        cbNam.setPreferredSize(new Dimension(100,35));
@@ -166,7 +175,11 @@ public class ThongKePanel extends JPanel {
         btRs.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                updateData();
+                if (updating) return;
+                updating = true;
+//                updateData();
+//                updateChart();
+                updating = false;
             }
 
             @Override
@@ -191,11 +204,16 @@ public class ThongKePanel extends JPanel {
         });
 
         updateData();
+        updateChart();
 
     }
 
     int getSoLuongSP(){
-        return prdBus.getAllProducts().size();
+        int tong = 0;
+        for (product_DTO prd: prdBus.getAllProducts()){
+            tong += prd.getSoLuong();
+        }
+        return tong;
 
     }
 
@@ -226,7 +244,7 @@ public class ThongKePanel extends JPanel {
             calendar.setTime(hoaDonBUS.getHoaDonFromId(item.getMAHD()).getNgayLap());
             int thang = calendar.get(Calendar.MONTH);
             int year = calendar.get(Calendar.YEAR);
-            if (year == Integer.parseInt((String) cbNam.getSelectedItem()) + 2)
+            if (year == Integer.parseInt((String) cbNam.getSelectedItem()))
                 dataChart.set(thang / 4 - 1, dataChart.get(thang/4) +  item.getSoLuong());
         }
         return tong;
@@ -248,23 +266,48 @@ public class ThongKePanel extends JPanel {
         return rs;
     }
 
-    void updateData(){
+
+    void updateChart(){
+        System.out.println("update");
         dataChart.set(0, 0);
         dataChart.set(1, 0);
         dataChart.set(2, 0);
         dataChart.set(3, 0);
-        lbSP.setText("Nhân viên: " + getSoLuongNv());
-        lbKH.setText("Khách hàng: " + getSoLuongKH());
-        lbSP.setText("Tồn kho: " + getSoLuongSP());
-        lbSPtrenNhap.setText("Số lượng hàng bán / số lượng nhập: " + getSoLuongBan() + "/" + getSoLuongNhap());
-        cbNam.setModel(new DefaultComboBoxModel(getAllDate().toArray()));
+
+        for (ChiTietHD item : chitiethdBUS.getList()){
+//            tong += item.getSoLuong();
+            Calendar calendar = Calendar.getInstance();
+
+            calendar.setTime(hoaDonBUS.getHoaDonFromId(item.getMAHD()).getNgayLap());
+            int thang = calendar.get(Calendar.MONTH);
+            int year = calendar.get(Calendar.YEAR);
+            if (year == Integer.parseInt((String) cbNam.getSelectedItem()))
+                dataChart.set(thang / 4 , dataChart.get(thang/4) +  item.getSoLuong());
+        }
 
         dataset.addValue(dataChart.get(0), "Quý 1", "Quý 1");
         dataset.addValue(dataChart.get(1), "Quý 2", "Quý 2");
         dataset.addValue(dataChart.get(2), "Quý 3", "Quý 3");
         dataset.addValue(dataChart.get(3), "Quý 4", "Quý 4");
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Số lượng sản phẩm bán", // Chart title
+                "Quý", // Domain axis label
+                "Số lượng", // Range axis label
+                dataset // Dataset
+        );
 
-        chartPanel.repaint();
+        // Display the chart in a frame
+        chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 400));
+    }
+
+    void updateData(){
+        lbNV.setText("Nhân viên: " + getSoLuongNv());
+        lbKH.setText("Khách hàng: " + getSoLuongKH());
+        lbSP.setText("Tồn kho: " + getSoLuongSP());
+        lbSPtrenNhap.setText("Số lượng hàng bán / số lượng nhập: " + getSoLuongBan() + "/" + getSoLuongNhap());
+        cbNam.setModel(new DefaultComboBoxModel(getAllDate().toArray()));
+
     }
 
 

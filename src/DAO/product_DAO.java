@@ -36,7 +36,7 @@ public class product_DAO extends conndb{
                    arr.add(p);
                }
            } catch (Exception e) {
-               System.out.println(e.getMessage());
+               System.out.println(e);
            } finally {
                closeConnection();
            }

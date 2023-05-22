@@ -243,6 +243,7 @@ class AddHoaDonGUI extends JPanel {
                         modelHD.removeRow(row);
                     }else {
                         if (Integer.parseInt((String) tblHD.getValueAt(row, 3)) > selectedSP.get(row).getSoLuong()){
+                            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Số lượng vượt quá tồn kho", "", JOptionPane.ERROR_MESSAGE);
                             soluong = selectedSP.get(row).getSoLuong();
                             tblHD.setValueAt(String.valueOf(soluong), row, 3);
                         }
@@ -284,12 +285,12 @@ class AddHoaDonGUI extends JPanel {
                 hd.setMAHD(bus.createID());
                 hd.setMANV("NV1");
                 hd.setMAKH(selectedKH.getMaKH());
-//                hd.setNgayLap(new java.sql.Date(new Date().getTime()));
+                hd.setNgayLap(new java.sql.Date(new Date().getTime()));
 
 
 
                 //////////
-                java.sql.Date sqlDate = java.sql.Date.valueOf("2021-05-21");
+                java.sql.Date sqlDate = java.sql.Date.valueOf("2021-1-1");
                 long timeInMillis = 3600000; // 1 hour in milliseconds
 
                 // Convert java.sql.Date to java.sql.Timestamp

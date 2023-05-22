@@ -26,7 +26,7 @@ public class DBCONNECT {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(host + dbname + "?useSSL=false", user, pass);
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối Database!" , "", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối Database!" + e.getMessage() , "", JOptionPane.ERROR_MESSAGE);
             MainMenu.currentFrame.dispose();
         }catch (ClassNotFoundException e){
             JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi không tìm thấy jdbc!", "", JOptionPane.ERROR_MESSAGE);
@@ -50,7 +50,7 @@ public class DBCONNECT {
                 return state;
             }catch (SQLException e){
                 errType = 3;
-                JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối database!", "", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối database!" + e.getMessage(), "", JOptionPane.ERROR_MESSAGE);
                 MainMenu.currentFrame.dispose();
                 return null;
             }
@@ -73,7 +73,7 @@ public class DBCONNECT {
         }catch (SQLException e){
             DBCONNECT.errType = 3;
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối database!", "", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(MainMenu.currentFrame, "Lỗi kết nối database! " + e.getMessage(), "", JOptionPane.ERROR_MESSAGE);
             MainMenu.currentFrame.dispose();
         }
         return null;

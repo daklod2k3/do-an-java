@@ -30,9 +30,9 @@ public class product_BUS {
         ArrayList<product_DTO> newProductList = new ArrayList<>();
         ArrayList<product_DTO> oldProductList = new ArrayList<>();
         for(int i=0;i<productList.size();i++) {
-            if(isExist(productList.get(i).getMaSP())) 
+            if(isExist(productList.get(i).getMaSP()))
                 oldProductList.add(productList.get(i));
-            else 
+            else
                 newProductList.add(productList.get(i));
         }
         return p.addNewProduct(newProductList) && p.addOldProduct(oldProductList);

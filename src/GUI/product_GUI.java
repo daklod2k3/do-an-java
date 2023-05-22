@@ -322,8 +322,8 @@ public class product_GUI extends JPanel {
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
 
+//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1382, 770));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setToolTipText("");
@@ -336,7 +336,7 @@ public class product_GUI extends JPanel {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/printer.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\QLKH\\image\\tien_printer.png")); // NOI18N
         jButton1.setText("Xuất Excel");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusable(false);
@@ -350,7 +350,7 @@ public class product_GUI extends JPanel {
         jToolBar1.add(jButton1);
         jToolBar1.add(jSeparator1);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/plus.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\QLKH\\image\\tien_plus.png")); // NOI18N
         jButton3.setText("Nhập hàng");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusable(false);
@@ -364,7 +364,7 @@ public class product_GUI extends JPanel {
         jToolBar1.add(jButton3);
         jToolBar1.add(jSeparator3);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/service.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\QLKH\\image\\tien_service.png")); // NOI18N
         jButton2.setText("Sửa");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -377,7 +377,7 @@ public class product_GUI extends JPanel {
         jToolBar1.add(jButton2);
         jToolBar1.add(jSeparator2);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/remove.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\QLKH\\image\\tien_remove.png")); // NOI18N
         jButton5.setText("Ẩn");
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -390,7 +390,7 @@ public class product_GUI extends JPanel {
         jToolBar1.add(jButton5);
         jToolBar1.add(jSeparator4);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/refresh.png"))); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\QLKH\\image\\tien_refresh.png")); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setFocusable(false);
@@ -404,7 +404,7 @@ public class product_GUI extends JPanel {
         jToolBar1.add(jButton7);
         jToolBar1.add(jSeparator5);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/options.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\QLKH\\image\\tien_options.png")); // NOI18N
         jButton8.setText("Danh mục");
         jButton8.setToolTipText("");
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -456,7 +456,7 @@ public class product_GUI extends JPanel {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/search.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(("img/tien_search.png"))); // NOI18N
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -577,7 +577,7 @@ public class product_GUI extends JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -680,7 +680,7 @@ public class product_GUI extends JPanel {
 
         jComboBox5.setModel(new DefaultComboBoxModel<>(new String[] { " " }));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/refresh.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(("img/tien_refresh.png"))); // NOI18N
         jButton6.setText("Làm mới");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -689,7 +689,7 @@ public class product_GUI extends JPanel {
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/image/plus.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(("img/tien_plus.png")) ); // NOI18N
         jButton9.setText("Nhập thêm");
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -786,10 +786,10 @@ public class product_GUI extends JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1206, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12))
         );
@@ -801,7 +801,7 @@ public class product_GUI extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1071,6 +1071,8 @@ public class product_GUI extends JPanel {
             float donGia = 0;
             Object []rowData = {maSp,tenSP,loaiSP,0,dvTinh,giaNhap,giaBan,donGia};
             ProductImportStorage.arrList.add(rowData);
+        System.out.println(ProductImportStorage.arrList.size());
+
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 

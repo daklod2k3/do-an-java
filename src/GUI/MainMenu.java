@@ -1,7 +1,10 @@
 package GUI;
 
+import BUS.NhanVienBUS;
+import BUS.TaiKhoanBUS;
 import DAO.DBCONNECT;
 import DAO.conndb;
+import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
 import GUI.Component.*;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -98,6 +101,13 @@ public class MainMenu extends JFrame{
         lbUserImg.setPreferredSize(new Dimension(150, 150));
         lbUserImg.setIcon(Helper.resizeImg(new ImageIcon("img/emp-male.png"), 150));
 
+        NhanVienBUS nhanVienBUS = new NhanVienBUS();
+        nhanVienBUS.loadNV();
+        for (NhanVienDTO item : nhanVienBUS.dsnv){
+            if (item.getMaNV().equals(item.getMaNV()))
+                this.loginUser.setNv(item);
+        }
+
 
         JLabel lbUserName = new JLabel("<html> <p style=\"text-align: center;\">" + this.loginUser.getNv().getTenNV() +"</p></html>");
 //        JLabel lbUserName = new JLabel("<html> <p style=\"text-align: center;\">" + "loc" +"</p></html>");
@@ -106,7 +116,7 @@ public class MainMenu extends JFrame{
         lbUserName.setFont(new Font(getFont().getName(), Font.BOLD, 25));
         lbUserName.setForeground(Color.WHITE);
 
-        JLabel lbUserRole = new JLabel(this.loginUser.getNv().isChucVu() ? "Quản trị viên" : "Nhân viên");
+        JLabel lbUserRole = new JLabel(!this.loginUser.getNv().isChucVu() ? "Quản trị viên" : "Nhân viên");
 //        JLabel lbUserRole = new JLabel("quan tri vien");
         lbUserRole.setForeground(Variable.green);
 //        lbUserRole.setPreferredSize(new Dimension(170, 30));

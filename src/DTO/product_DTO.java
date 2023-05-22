@@ -134,7 +134,6 @@ public class product_DTO {
     public void setMaLoai(String maLoai) {
         this.maLoai = maLoai;
     }
-
-
-
+    
+    
 }
